@@ -1,0 +1,236 @@
+/* KaamKhoji — Dark Purple Theme
+   Uses Poppins font with a dark base and purple-blue gradient accents */
+
+/* Fonts are included using link tags in header.php */
+
+/* CSS variables defining colors, spacing, and theme values */
+:root {
+  --primary: #00b4d8;
+  --primary-dark: #0096b3;
+  --primary-light: rgba(0, 180, 216, 0.12);
+  --accent: #38c9e8;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #60a5fa;
+
+  --bg: #f8fafc;
+  --bg-2: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-solid: #ffffff;
+  --bg-nav: rgba(255, 255, 255, 0.92);
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-glow: rgba(0, 180, 216, 0.45);
+  --shadow: rgba(0, 0, 0, 0.07);
+  --shadow-md: rgba(0, 0, 0, 0.13);
+  --shadow-cyan: 0 0 40px rgba(0, 180, 216, 0.18);
+
+  --gradient: #00b4d8;
+  --gradient-text: linear-gradient(135deg, #00b4d8 0%, #0077a8 100%);
+  --gradient-gold: linear-gradient(135deg, #00b4d8 0%, #0096b3 100%);
+  --hero-bg: #f8fafc;
+  --hero-gradient: linear-gradient(
+    135deg,
+    #e0f7fa 0%,
+    #f0fdff 50%,
+    #f8fafc 100%
+  );
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+  --transition: 0.25s ease;
+}
+
+/* Light theme adjustments */
+[data-theme="light"] {
+  --border-glow: rgba(0, 180, 216, 0.4);
+  --shadow-cyan: 0 0 30px rgba(0, 180, 216, 0.12);
+  --primary-light: rgba(0, 180, 216, 0.1);
+}
+
+/* Reset default browser spacing and box model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Enables smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base styling for the page */
+body {
+  font-family: "Satoshi", "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  transition:
+    background var(--transition),
+    color var(--transition);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Anchor styling */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent);
+}
+
+/* Remove default list styling */
+ul {
+  list-style: none;
+}
+
+/* Ensure images scale properly */
+img {
+  max-width: 100%;
+}
+
+/* Gradient text utility for headings */
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Alternate gradient text style */
+.gradient-text-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+}
+
+/* Navigation bar styling */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg-nav);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Container for navigation items */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  height: 64px;
+}
+
+/* Button base styling */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Form group spacing */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+/* Input labels */
+.form-label {
+  font-weight: 600;
+}
+
+/* Input fields */
+.form-control {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+/* Page header section */
+.page-header {
+  background: var(--bg-2);
+  padding: 2.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Table wrapper styling */
+.table-wrap {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+}
+
+/* Footer styling */
+.footer {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+}
+
+/* Decorative glowing divider */
+.glow-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 180, 216, 0.45),
+    transparent
+  );
+}
+
+/* Animation for elements appearing from top */
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+/* Utility classes for text and spacing */
+.text-muted {
+  color: var(--text-muted);
+}
+.text-center {
+  text-align: center;
+}
+
+/* Additional global variables */
+:root {
+  --navbar-height: 64px;
+  --radius-full: 9999px;
+}
+
+/* Utility class for wrapping flex items */
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* Profile page styling note */

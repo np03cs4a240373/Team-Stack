@@ -1,0 +1,228 @@
+/* KaamKhoji — Dark Purple Theme
+   Font: Poppins | Color scheme: Dark base with purple/blue accents */
+
+/* Fonts are loaded through <link> tags in header.php */
+
+/* CSS Variables (Default Theme Settings) */
+:root {
+  --primary: #00b4d8;
+  --primary-dark: #0096b3;
+  --primary-light: rgba(0, 180, 216, 0.12);
+  --accent: #38c9e8;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #60a5fa;
+
+  --bg: #f8fafc;
+  --bg-2: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-solid: #ffffff;
+  --bg-nav: rgba(255, 255, 255, 0.92);
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-glow: rgba(0, 180, 216, 0.45);
+  --shadow: rgba(0, 0, 0, 0.07);
+  --shadow-md: rgba(0, 0, 0, 0.13);
+  --shadow-cyan: 0 0 40px rgba(0, 180, 216, 0.18);
+
+  --gradient: #00b4d8;
+  --gradient-text: linear-gradient(135deg, #00b4d8 0%, #0077a8 100%);
+  --gradient-gold: linear-gradient(135deg, #00b4d8 0%, #0096b3 100%);
+  --hero-bg: #f8fafc;
+  --hero-gradient: linear-gradient(
+    135deg,
+    #e0f7fa 0%,
+    #f0fdff 50%,
+    #f8fafc 100%
+  );
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+  --transition: 0.25s ease;
+}
+
+/* Light theme adjustments */
+[data-theme="light"] {
+  --border-glow: rgba(0, 180, 216, 0.4);
+  --shadow-cyan: 0 0 30px rgba(0, 180, 216, 0.12);
+  --primary-light: rgba(0, 180, 216, 0.1);
+}
+
+/* Reset and base styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body styling and typography */
+body {
+  font-family: "Satoshi", "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  transition:
+    background var(--transition),
+    color var(--transition);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Links */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover {
+  color: var(--accent);
+}
+
+/* Lists and images */
+ul {
+  list-style: none;
+}
+img {
+  max-width: 100%;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+}
+
+/* Navigation bar styling */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg-nav);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Navigation container */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  height: 64px;
+}
+
+/* Navigation logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+}
+
+/* Buttons styling */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+}
+
+/* Primary button */
+.btn-primary {
+  background: #00b4d8;
+  color: #fff;
+}
+
+/* Forms styling */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  font-weight: 600;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+/* Table container */
+.table-wrap {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+}
+
+/* Footer section */
+.footer {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+}
+
+/* Divider line with glow effect */
+.glow-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 180, 216, 0.45),
+    transparent
+  );
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive design rules */
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+/* Utility classes */
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-center {
+  text-align: center;
+}

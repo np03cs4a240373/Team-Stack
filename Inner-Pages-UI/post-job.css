@@ -1,0 +1,183 @@
+/* KaamKhoji Theme
+   Dark-based UI with blue-purple accents */
+
+/* Fonts loaded via header file */
+
+/* Theme variables for colors, spacing and effects */
+:root {
+  --primary: #00b4d8;
+  --primary-dark: #0096b3;
+  --primary-light: rgba(0, 180, 216, 0.12);
+  --accent: #38c9e8;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #60a5fa;
+
+  --bg: #f8fafc;
+  --bg-2: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-nav: rgba(255, 255, 255, 0.92);
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --border: rgba(0, 0, 0, 0.08);
+
+  --gradient-text: linear-gradient(135deg, #00b4d8 0%, #0077a8 100%);
+  --gradient-gold: linear-gradient(135deg, #00b4d8 0%, #0096b3 100%);
+
+  --radius: 14px;
+  --transition: 0.25s ease;
+}
+
+/* Light mode adjustments */
+[data-theme="light"] {
+  --primary-light: rgba(0, 180, 216, 0.1);
+}
+
+/* Reset default spacing and box model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Enable smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base page styling */
+body {
+  font-family: "Satoshi", "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+
+/* Link styling */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent);
+}
+
+/* Remove list bullets */
+ul {
+  list-style: none;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Alternate gradient text */
+.gradient-text-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Sticky navigation bar */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: var(--bg-nav);
+}
+
+/* Navigation container layout */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Button base style */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+}
+
+/* Form spacing */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+/* Input fields */
+.form-control {
+  width: 100%;
+  border: 1px solid var(--border);
+}
+
+/* Page header section */
+.page-header {
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Table container */
+.table-wrap {
+  background: var(--bg-card);
+}
+
+/* Footer section */
+.footer {
+  background: var(--bg-2);
+}
+
+/* Decorative divider */
+.glow-divider {
+  height: 1px;
+}
+
+/* Slide animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive behavior */
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+/* Utility classes */
+.text-muted {
+  color: var(--text-muted);
+}
+.text-center {
+  text-align: center;
+}
+
+/* Extra global variables */
+:root {
+  --navbar-height: 64px;
+}
+
+/* Flex wrapping helper */
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* Page-specific note for post-job section */
