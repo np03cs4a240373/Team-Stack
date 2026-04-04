@@ -1,0 +1,43 @@
+/*
+   admin-dashboard.css — dashboard/admin.php
+   Controls layout and styling of admin dashboard
+*/
+/* - Stats section layout - */
+/* Uses grid system (3 columns per row, total 6 cards in 2 rows) */
+
+/*  Two cards side by side (users & jobs) */
+.dashboard-body .grid-2 {
+  align-items: start;
+}
+.dashboard-body .grid-2 .card {
+  height: 100%;
+}
+
+/* - Role badge colors - */
+/* Admin = blue, Employer = green, Seeker = yellow */
+/* Colors are defined in global.css */
+
+/* - Recent tables min-width to prevent overlapping columns- */
+.dashboard-body .grid-2 .table-wrap table {
+  min-width: 360px;
+}
+
+/* ---- Admin Actions buttons ---- */
+.dashboard-body .card .btn + .btn {
+  margin-left: 0;
+}
+
+/* ---- Mobile view adjustments ---- */
+@media (max-width: 768px) {
+  .dashboard-body .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-body .grid-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .dashboard-body .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
