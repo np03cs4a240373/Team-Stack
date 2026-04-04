@@ -1,7 +1,6 @@
 
-// pages/my-applications.php - Job Seeker: View Applications
-
 <?php
+// pages/my-applications.php - Job Seeker: View Applications
 // Page title and CSS file to load
 $pageTitle = 'My Applications';
 $pageCss = 'my-applications';
