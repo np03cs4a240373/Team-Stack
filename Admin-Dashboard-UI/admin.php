@@ -98,7 +98,7 @@ require_once '../includes/header.php';
         </div>
     </div>
 
-    <!-- Tables that are side by side for Recent Users and Recent Jobs -->
+    <!-- Tables for Recent Users and Recent Jobs -->
     <div class="grid-2">
 
         <!-- Left table: 5 most recently registered users -->
