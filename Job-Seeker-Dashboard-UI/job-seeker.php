@@ -1,62 +1,23 @@
 <?php
-/*
- * Job Seeker Dashboard Logic
- * Use: It displays dashboard data for logged in job seekers
- * Features:
- * - Fetches total applications, accepted applications, and saved jobs count
- * - Shows recent applications
- * - Blocks access to non-seekers
- * File Location: dashboard/job-seeker.php
- */
-
-
-require_once '../includes/auth.php';
-require_once '../includes/db.php';
-
-requireRole('seeker'); // Only job seekers can see this
-
-//Creating database connection 
-$pdo = getPDO();
-$userId = getUserId();
-
-// Counting total number of applications
-$totalApplications = $pdo->prepare("SELECT COUNT(*) FROM applications WHERE seeker_id = ?");
-$totalApplications->execute([$userId]);
-$totalApplications = $totalApplications->fetchColumn();
-
-//Counting total number of saved jobs
-$savedJobsCount = $pdo->prepare("SELECT COUNT(*) FROM saved_jobs WHERE seeker_id = ?");
-$savedJobsCount->execute([$userId]);
-$savedJobsCount = $savedJobsCount->fetchColumn();
-
-//Counting number of accepted applications
-$acceptedCount = $pdo->prepare("SELECT COUNT(*) FROM applications WHERE seeker_id = ? AND status = 'accepted'");
-$acceptedCount->execute([$userId]);
-$acceptedCount = $acceptedCount->fetchColumn();
-
-// Fetch latest 5 applications along with job title and company name
-$stmt = $pdo->prepare("
-    SELECT applications.*, jobs.title AS job_title, jobs.company
-    FROM applications
-    JOIN jobs ON applications.job_id = jobs.id
-    WHERE applications.seeker_id = ?
-    ORDER BY applications.applied_at DESC
-    LIMIT 5
-");
-$stmt->execute([$userId]);
-$recentApplications = $stmt->fetchAll();
-
-//Page title and CSS 
 $pageTitle = 'My Dashboard';
 $pageCss = 'job-seeker';
 require_once '../includes/header.php';
+
+// Sample data for UI preview
+$userName = 'John Doe';
+$totalApplications = 12;
+$acceptedCount = 3;
+$savedJobsCount = 7;
+$recentApplications = [
+    ['job_title' => 'Frontend Developer', 'company' => 'Tech Corp', 'status' => 'pending', 'applied_at' => '2024-01-15'],
+    ['job_title' => 'UI Designer', 'company' => 'Creative Studio', 'status' => 'accepted', 'applied_at' => '2024-01-10'],
+];
 ?>
 
 <!-- Dashboard Header -->
- <!-- Display welcome message with user's name -->
 <div class="dashboard-header">
     <div class="container">
-        <h1>Welcome, <?= htmlspecialchars(getUserName()) ?>!</h1>
+        <h1>Welcome, <?= htmlspecialchars($userName) ?>!</h1>
         <p>Here's an overview of your job search activity.</p>
     </div>
 </div>
@@ -64,7 +25,6 @@ require_once '../includes/header.php';
 <div class="dashboard-body">
 
     <!-- Stats Cards -->
-    <!-- Display key statistics: total applications, accepted, saved jobs -->
     <div class="grid-3 mb-3">
         <div class="stat-card">
             <div class="stat-icon stat-icon-plain">
@@ -96,30 +56,29 @@ require_once '../includes/header.php';
     </div>
 
     <!-- Quick Actions -->
-    <!-- Buttons for access to main features -->
     <div class="card mb-3">
         <h3 style="margin-bottom:1rem; font-size:1rem; font-weight:600;">Quick Actions</h3>
         <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-            <a href="<?= BASE_URL ?>/pages/jobs.php" class="btn btn-primary">Find Jobs</a>
-            <a href="<?= BASE_URL ?>/pages/my-applications.php" class="btn btn-outline">My Applications</a>
-            <a href="<?= BASE_URL ?>/pages/saved-jobs.php" class="btn btn-outline">Saved Jobs</a>
-            <a href="<?= BASE_URL ?>/pages/profile.php" class="btn btn-outline">Edit Profile</a>
+            <a href="/pages/jobs.php" class="btn btn-primary">Find Jobs</a>
+            <a href="/pages/my-applications.php" class="btn btn-outline">My Applications</a>
+            <a href="/pages/saved-jobs.php" class="btn btn-outline">Saved Jobs</a>
+            <a href="/pages/profile.php" class="btn btn-outline">Edit Profile</a>
         </div>
     </div>
 
-    <!-- Recent Applications -->
-    <!-- Show recent applications in a table format -->
+    <!-- Recent Applications Table -->
     <div class="card">
         <div class="d-flex justify-between align-center mb-2">
             <h3 style="font-size:1rem; font-weight:600;">Recent Applications</h3>
-            <a href="<?= BASE_URL ?>/pages/my-applications.php" class="btn btn-outline btn-sm">View All</a>
+            <a href="/pages/my-applications.php" class="btn btn-outline btn-sm">View All</a>
         </div>
 
         <?php if (empty($recentApplications)): ?>
+            <!-- Empty state shown when there are no applications -->
             <div class="empty-state" style="padding:2rem;">
                 <h3>No applications yet</h3>
                 <p>Start applying for jobs to see them here.</p>
-                <a href="<?= BASE_URL ?>/pages/jobs.php" class="btn btn-primary">Browse Jobs</a>
+                <a href="/pages/jobs.php" class="btn btn-primary">Browse Jobs</a>
             </div>
         <?php else: ?>
             <div class="table-wrap">
