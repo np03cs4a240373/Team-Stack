@@ -1,9 +1,164 @@
-/* ============================================================
-   job-seeker.css — dashboard/job-seeker.php
-   style.css already covers: .dashboard-header, .dashboard-body,
-   .stat-card, .stat-icon, .stat-icon-plain, .stat-info,
-   .stat-value, .stat-label, .grid-3, .card, .table-wrap,
-   .status-badge, .empty-state, .btn.
-   ============================================================ */
+/* 
+   KaamKhoji theme
+   Dark purple style with blue highlights
+   Uses Poppins font
+*/
 
-/* No additional rules needed — style.css covers the full seeker dashboard. */
+/* Fonts are loaded from header.php */
+
+/* Variables for colors, spacing, and theme */
+:root {
+  /* main colors */
+  --primary: #00b4d8;
+  --primary-dark: #0096b3;
+  --primary-light: rgba(0, 180, 216, 0.12);
+  --accent: #38c9e8;
+
+  /* status colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #60a5fa;
+
+  /* background colors */
+  --bg: #f8fafc;
+  --bg-2: #f1f5f9;
+  --bg-card: #ffffff;
+
+  /* text colors */
+  --text: #1e293b;
+  --text-muted: #64748b;
+
+  /* borders and shadows */
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: rgba(0, 0, 0, 0.07);
+
+  /* gradient */
+  --gradient-text: linear-gradient(135deg, #00b4d8 0%, #0077a8 100%);
+
+  /* radius and animation */
+  --radius: 14px;
+  --transition: 0.25s ease;
+}
+
+/* Light theme adjustments */
+[data-theme="light"] {
+  --primary-light: rgba(0, 180, 216, 0.1);
+}
+
+/* Reset default browser styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Main body styling */
+body {
+  font-family: "Satoshi", "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+
+/* Links */
+a {
+  color: var(--primary);
+}
+a:hover {
+  color: var(--accent);
+}
+
+/* Utility: gradient text */
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navbar styling */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: var(--bg-nav);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Navigation container */
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+/* Primary button */
+.btn-primary {
+  background: #00b4d8;
+  color: white;
+}
+
+/* Outline button */
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--primary);
+}
+
+/* Form elements */
+.form-control {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1.5px solid var(--border);
+}
+
+/* Page header */
+.page-header {
+  background: var(--bg-2);
+  padding: 2rem;
+}
+
+/* Table container */
+.table-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+/* Footer */
+.footer {
+  background: var(--bg-2);
+}
+
+/* Small helper classes */
+.text-center {
+  text-align: center;
+}
+.hidden {
+  display: none;
+}
+
+/* Dashboard header */
+.dashboard-header {
+  padding: 3rem;
+  background: var(--bg-2);
+}
+
+/* Dashboard stats card */
+.stat-card {
+  background: var(--bg-card);
+  padding: 1.5rem;
+}
