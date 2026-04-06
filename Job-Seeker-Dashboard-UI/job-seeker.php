@@ -1,30 +1,15 @@
-<?php
-$pageTitle = 'My Dashboard';
-$pageCss = 'job-seeker';
-require_once '../includes/header.php';
-
-// Sample data for UI preview
-$userName = 'John Doe';
-$totalApplications = 12;
-$acceptedCount = 3;
-$savedJobsCount = 7;
-$recentApplications = [
-    ['job_title' => 'Frontend Developer', 'company' => 'Tech Corp', 'status' => 'pending', 'applied_at' => '2024-01-15'],
-    ['job_title' => 'UI Designer', 'company' => 'Creative Studio', 'status' => 'accepted', 'applied_at' => '2024-01-10'],
-];
-?>
-
 <!-- Dashboard Header -->
+<!-- Show welcome message with user's name -->
 <div class="dashboard-header">
     <div class="container">
-        <h1>Welcome, <?= htmlspecialchars($userName) ?>!</h1>
+        <h1>Welcome, <?= htmlspecialchars(getUserName()) ?>!</h1>
         <p>Here's an overview of your job search activity.</p>
     </div>
 </div>
 
 <div class="dashboard-body">
 
-    <!-- Stats Cards -->
+    <!-- 3 stat cards: total apps, accepted, saved jobs -->
     <div class="grid-3 mb-3">
         <div class="stat-card">
             <div class="stat-icon stat-icon-plain">
@@ -55,32 +40,33 @@ $recentApplications = [
         </div>
     </div>
 
-    <!-- Quick Actions -->
+    <!-- Quick action buttons -->
     <div class="card mb-3">
         <h3 style="margin-bottom:1rem; font-size:1rem; font-weight:600;">Quick Actions</h3>
         <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-            <a href="/pages/jobs.php" class="btn btn-primary">Find Jobs</a>
-            <a href="/pages/my-applications.php" class="btn btn-outline">My Applications</a>
-            <a href="/pages/saved-jobs.php" class="btn btn-outline">Saved Jobs</a>
-            <a href="/pages/profile.php" class="btn btn-outline">Edit Profile</a>
+            <a href="<?= BASE_URL ?>/pages/jobs.php" class="btn btn-primary">Find Jobs</a>
+            <a href="<?= BASE_URL ?>/pages/my-applications.php" class="btn btn-outline">My Applications</a>
+            <a href="<?= BASE_URL ?>/pages/saved-jobs.php" class="btn btn-outline">Saved Jobs</a>
+            <a href="<?= BASE_URL ?>/pages/profile.php" class="btn btn-outline">Edit Profile</a>
         </div>
     </div>
 
-    <!-- Recent Applications Table -->
+    <!-- Table showing last 5 applications -->
     <div class="card">
         <div class="d-flex justify-between align-center mb-2">
             <h3 style="font-size:1rem; font-weight:600;">Recent Applications</h3>
-            <a href="/pages/my-applications.php" class="btn btn-outline btn-sm">View All</a>
+            <a href="<?= BASE_URL ?>/pages/my-applications.php" class="btn btn-outline btn-sm">View All</a>
         </div>
 
+        <!-- Show this if user has no applications yet -->
         <?php if (empty($recentApplications)): ?>
-            <!-- Empty state shown when there are no applications -->
             <div class="empty-state" style="padding:2rem;">
                 <h3>No applications yet</h3>
                 <p>Start applying for jobs to see them here.</p>
-                <a href="/pages/jobs.php" class="btn btn-primary">Browse Jobs</a>
+                <a href="<?= BASE_URL ?>/pages/jobs.php" class="btn btn-primary">Browse Jobs</a>
             </div>
         <?php else: ?>
+            <!-- Loop through each application and show in a row -->
             <div class="table-wrap">
                 <table>
                     <thead>
@@ -111,5 +97,3 @@ $recentApplications = [
     </div>
 
 </div>
-
-<?php require_once '../includes/footer.php'; ?>
