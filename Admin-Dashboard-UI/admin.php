@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <!-- Admin action buttons -->
+    <!-- Quick Actions -->
     <div class="card mb-3">
         <h3 style="margin-bottom:1rem; font-size:1rem; font-weight:600;">Admin Actions</h3>
         <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
@@ -78,46 +78,16 @@
 
     <!-- Two tables side by side: recent users and recent jobs -->
     <div class="grid-2">
-
-        <!-- Recent users table -->
+        <!-- Recent Users -->
         <div class="card">
             <div class="d-flex justify-between align-center mb-2">
                 <h3 style="font-size:1rem; font-weight:600;">Recent Users</h3>
                 <a href="<?= BASE_URL ?>/admin/users.php" class="btn btn-outline btn-sm">View All</a>
             </div>
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr><th>Name</th><th>Role</th><th>Joined</th><th>Action</th></tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($recentUsers as $user): ?>
-                            <tr>
-                                <td><?= htmlspecialchars($user['name']) ?></td>
-                                <td>
-                                    <span class="status-badge status-<?= $user['role'] === 'admin' ? 'reviewed' : ($user['role'] === 'employer' ? 'accepted' : 'pending') ?>">
-                                        <?= ucfirst($user['role']) ?>
-                                    </span>
-                                </td>
-                                <td><?= date('M d', strtotime($user['created_at'])) ?></td>
-                                <td>
-                                    <!-- Show delete button for all users except yourself -->
-                                    <?php if ($user['id'] !== getUserId()): ?>
-                                        <a href="<?= BASE_URL ?>/api/delete.php?type=user&id=<?= $user['id'] ?>"
-                                           onclick="return confirm('Delete user <?= htmlspecialchars(addslashes($user['name'])) ?>?')"
-                                           class="btn btn-danger btn-sm">Delete</a>
-                                    <?php else: ?>
-                                        <span class="text-muted text-sm">You</span>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+           
         </div>
 
-        <!-- Recent jobs table -->
+        <!-- Recent Jobs -->
         <div class="card">
             <div class="d-flex justify-between align-center mb-2">
                 <h3 style="font-size:1rem; font-weight:600;">Recent Jobs</h3>
@@ -152,3 +122,5 @@
     </div>
 
 </div>
+
+<?php require_once '../includes/footer.php'; ?>
