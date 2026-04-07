@@ -51,49 +51,14 @@
         </div>
     </div>
 
-    <!-- Table showing last 5 applications -->
+    <!-- Recent applications -->
     <div class="card">
         <div class="d-flex justify-between align-center mb-2">
             <h3 style="font-size:1rem; font-weight:600;">Recent Applications</h3>
             <a href="<?= BASE_URL ?>/pages/my-applications.php" class="btn btn-outline btn-sm">View All</a>
         </div>
 
-        <!-- Show this if user has no applications yet -->
-        <?php if (empty($recentApplications)): ?>
-            <div class="empty-state" style="padding:2rem;">
-                <h3>No applications yet</h3>
-                <p>Start applying for jobs to see them here.</p>
-                <a href="<?= BASE_URL ?>/pages/jobs.php" class="btn btn-primary">Browse Jobs</a>
-            </div>
-        <?php else: ?>
-            <!-- Loop through each application and show in a row -->
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Job Title</th>
-                            <th>Company</th>
-                            <th>Status</th>
-                            <th>Applied On</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($recentApplications as $app): ?>
-                            <tr>
-                                <td><?= htmlspecialchars($app['job_title']) ?></td>
-                                <td><?= htmlspecialchars($app['company']) ?></td>
-                                <td>
-                                    <span class="status-badge status-<?= $app['status'] ?>">
-                                        <?= ucfirst($app['status']) ?>
-                                    </span>
-                                </td>
-                                <td><?= date('M d, Y', strtotime($app['applied_at'])) ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php endif; ?>
+        
     </div>
 
 </div>
