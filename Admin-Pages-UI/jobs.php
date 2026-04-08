@@ -11,10 +11,13 @@
     <div class="card mb-3" style="padding:1rem 1.5rem;">
         <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
             <span style="font-weight:600; font-size:.9rem;">Filter:</span>
-            <a href="/admin/jobs.php" class="btn btn-primary btn-sm">All</a>
-            <a href="/admin/jobs.php?status=active" class="btn btn-outline btn-sm">Active</a>
-            <a href="/admin/jobs.php?status=closed" class="btn btn-outline btn-sm">Closed</a>
-            <span class="text-muted text-sm" style="margin-left:auto;">2 job(s)</span>
+
+            <!--add php code in all links-->
+
+            <a href="#" class="btn btn-primary btn-sm">All</a>
+            <a href="#" class="btn btn-outline btn-sm">Active</a>
+            <a href="#" class="btn btn-outline btn-sm">Closed</a>
+            <span class="text-muted text-sm" style="margin-left:auto;">2 job(s)  <!-- add php count here --> </span>
         </div>
     </div>
 
@@ -42,7 +45,8 @@
                 <tr>
                     <td class="text-muted">1</td>
                     <td>
-                        <a href="/pages/job-detail.php?id=1" class="text-primary">
+                         <!--add php code in this link-->
+                        <a href="#" class="text-primary">
                             <strong>Frontend Developer</strong>
                         </a>
                     </td>
@@ -62,7 +66,8 @@
                     </td>
                     <td>Mar 10, 2025</td>
                     <td>
-                        <a href="/api/delete.php?type=job&id=1"
+                         <!--add php code in this link-->
+                        <a href="#"
                            onclick="return confirm('Delete this job and all its applications?')"
                            class="btn btn-danger btn-sm">Delete</a>
                     </td>
@@ -72,7 +77,8 @@
                 <tr>
                     <td class="text-muted">2</td>
                     <td>
-                        <a href="/pages/job-detail.php?id=2" class="text-primary">
+                         <!--add php code in this link-->
+                        <a href="#" class="text-primary">
                             <strong>Marketing Intern</strong>
                         </a>
                     </td>
@@ -92,7 +98,8 @@
                     </td>
                     <td>Feb 20, 2025</td>
                     <td>
-                        <a href="/api/delete.php?type=job&id=2"
+                         <!--add php code in this link-->
+                        <a href="#"
                            onclick="return confirm('Delete this job and all its applications?')"
                            class="btn btn-danger btn-sm">Delete</a>
                     </td>
