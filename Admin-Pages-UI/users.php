@@ -11,11 +11,14 @@
     <div class="card mb-3" style="padding:1rem 1.5rem;">
         <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
             <span style="font-weight:600; font-size:.9rem;">Filter:</span>
-            <a href="/admin/users.php" class="btn btn-primary btn-sm">All</a>
-            <a href="/admin/users.php?role=seeker" class="btn btn-outline btn-sm">Job Seekers</a>
-            <a href="/admin/users.php?role=employer" class="btn btn-outline btn-sm">Employers</a>
-            <a href="/admin/users.php?role=admin" class="btn btn-outline btn-sm">Admins</a>
-            <span class="text-muted text-sm" style="margin-left:auto;">3 user(s)</span>
+
+            <!--add php code for all links-->
+
+            <a href="#" class="btn btn-primary btn-sm">All</a>
+            <a href="#" class="btn btn-outline btn-sm">Job Seekers</a>
+            <a href="#" class="btn btn-outline btn-sm">Employers</a>
+            <a href="#" class="btn btn-outline btn-sm">Admins</a>
+            <span class="text-muted text-sm" style="margin-left:auto;">3 user(s) <!-- add php count here --> </span>
         </div>
     </div>
 
@@ -68,7 +71,8 @@
                     <td>Pokhara</td>
                     <td>Feb 10, 2025</td>
                     <td>
-                        <a href="/api/delete.php?type=user&id=2"
+                        <!--add php code for link in delete button-->
+                        <a href="#"
                             onclick="return confirm('Delete user Ram Sharma? This will also delete their jobs and applications.')"
                             class="btn btn-danger btn-sm">Delete</a>
                     </td>
@@ -87,7 +91,8 @@
                     <td>—</td>
                     <td>Mar 05, 2025</td>
                     <td>
-                        <a href="/api/delete.php?type=user&id=3"
+                         <!--add php code for link in delete button-->
+                        <a href="#"
                             onclick="return confirm('Delete user Sita Thapa? This will also delete their jobs and applications.')"
                             class="btn btn-danger btn-sm">Delete</a>
                     </td>
