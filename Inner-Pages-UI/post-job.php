@@ -1,19 +1,4 @@
 
-
-// pages/post-job.php - Employer: Post a New Job
-
-<?php
-// Page title and CSS file to load
-$pageTitle = 'Post a Job';
-$pageCss = 'post-job';
-
-// Error message variable (filled by backend if validation fails)
-$error = '';
-
-// Load the header (navigation, HTML head, etc.)
-require_once '../includes/header.php';
-?>
-
 <!-- Top header section of the page -->
 <div class="page-header">
     <div class="container">
@@ -27,14 +12,11 @@ require_once '../includes/header.php';
         <div class="card">
 
             <!-- Show error message if validation failed -->
-            <?php if ($error): ?>
-                <div class="flash flash-error" style="border-radius:8px; margin-bottom:1.5rem;">
-                    <?= htmlspecialchars($error) ?>
-                </div>
-            <?php endif; ?>
+            <!--add php code here-->
 
             <!-- Job posting form: POSTs to same page -->
-            <form method="POST" action="<?= BASE_URL ?>/pages/post-job.php" data-validate>
+            <!--add php for base url-->
+            <form method="POST" action="#" data-validate>
 
                 <div class="grid-2">
                     <div class="form-group">
@@ -42,8 +24,9 @@ require_once '../includes/header.php';
                         <input type="text" id="title" name="title"
                                class="form-control"
                                placeholder="e.g. PHP Developer"
-                               value="<?= htmlspecialchars($_POST['title'] ?? '') ?>"
+                               value=""
                                required>
+                    <!--add php code in values = part -->
                         <span class="form-error">Job title is required.</span>
                     </div>
 
@@ -52,8 +35,9 @@ require_once '../includes/header.php';
                         <input type="text" id="company" name="company"
                                class="form-control"
                                placeholder="e.g. Tech Corp"
-                               value="<?= htmlspecialchars($_POST['company'] ?? '') ?>"
+                               value=" "
                                required>
+
                         <span class="form-error">Company name is required.</span>
                     </div>
                 </div>
@@ -64,7 +48,7 @@ require_once '../includes/header.php';
                         <input type="text" id="location" name="location"
                                class="form-control"
                                placeholder="e.g. Kathmandu / Remote"
-                               value="<?= htmlspecialchars($_POST['location'] ?? '') ?>"
+                               value=" "
                                required>
                         <span class="form-error">Location is required.</span>
                     </div>
@@ -73,11 +57,14 @@ require_once '../includes/header.php';
                         <label class="form-label" for="type">Job Type *</label>
                         <!-- Dropdown remembers selected value after failed form submission -->
                         <select id="type" name="type" class="form-control" required>
-                            <option value="full-time"  <?= (($_POST['type']??'')  === 'full-time')  ? 'selected' : '' ?>>Full Time</option>
-                            <option value="part-time"  <?= (($_POST['type']??'')  === 'part-time')  ? 'selected' : '' ?>>Part Time</option>
-                            <option value="remote"     <?= (($_POST['type']??'')  === 'remote')     ? 'selected' : '' ?>>Remote</option>
-                            <option value="contract"   <?= (($_POST['type']??'')  === 'contract')   ? 'selected' : '' ?>>Contract</option>
-                            <option value="internship" <?= (($_POST['type']??'')  === 'internship') ? 'selected' : '' ?>>Internship</option>
+
+                        <!--add code in option part-->
+
+                        <option value="full-time">Full Time</option>
+                        <option value="part-time">Part Time</option>
+                        <option value="remote">Remote</option>
+                        <option value="contract">Contract</option>
+                        <option value="internship">Internship</option>
                         </select>
                     </div>
                 </div>
@@ -88,7 +75,7 @@ require_once '../includes/header.php';
                     <input type="text" id="salary" name="salary"
                            class="form-control"
                            placeholder="e.g. Rs. 40,000 - 60,000 / month"
-                           value="<?= htmlspecialchars($_POST['salary'] ?? '') ?>">
+                           value=" ">
                 </div>
 
                 <div class="form-group">
@@ -97,7 +84,7 @@ require_once '../includes/header.php';
                               class="form-control"
                               rows="6"
                               placeholder="Describe the role, responsibilities, and what makes it exciting..."
-                              required><?= htmlspecialchars($_POST['description'] ?? '') ?></textarea>
+                              required> <!--add code here--> </textarea>
                     <span class="form-error">Description is required.</span>
                 </div>
 
@@ -107,13 +94,16 @@ require_once '../includes/header.php';
                     <textarea id="requirements" name="requirements"
                               class="form-control"
                               rows="4"
-                              placeholder="Skills, experience, education requirements..."><?= htmlspecialchars($_POST['requirements'] ?? '') ?></textarea>
+                              placeholder="Skills, experience, education requirements..."> <!--add code here--> </textarea>
                 </div>
 
                 <!-- Submit or go back to employer dashboard -->
                 <div style="display:flex; gap:1rem;">
                     <button type="submit" class="btn btn-primary btn-lg">Post Job</button>
-                    <a href="<?= BASE_URL ?>/dashboard/employer.php" class="btn btn-outline btn-lg">Cancel</a>
+
+                    <!--add php code for links-->
+
+                    <a href="#" class="btn btn-outline btn-lg">Cancel</a>
                 </div>
 
             </form>
@@ -122,4 +112,3 @@ require_once '../includes/header.php';
 </div>
 
 <!-- Load footer (closing HTML tags, scripts) -->
-<?php require_once '../includes/footer.php'; ?>
