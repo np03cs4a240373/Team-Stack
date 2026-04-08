@@ -1,20 +1,3 @@
-
-
-// pages/profile.php - Edit Profile (all roles)
-
-<?php
-// Page title and CSS file to load
-$pageTitle = 'My Profile';
-$pageCss = 'profile';
-
-// Variables to show success or error messages
-$error   = '';
-$success = '';
-
-// Load the header (navigation, HTML head, etc.)
-require_once '../includes/header.php';
-?>
-
 <!-- Top header section of the page -->
 <div class="page-header">
     <div class="container">
@@ -26,34 +9,26 @@ require_once '../includes/header.php';
 <div class="container section">
     <div style="max-width:640px; margin:0 auto;">
 
-        <!-- Show success message after profile is updated -->
-        <?php if ($success): ?>
-            <div class="flash flash-success" style="border-radius:8px; margin-bottom:1.5rem;">
-                <?= htmlspecialchars($success) ?>
-            </div>
-        <?php endif; ?>
-
-        <!-- Show error message if validation failed -->
-        <?php if ($error): ?>
-            <div class="flash flash-error" style="border-radius:8px; margin-bottom:1.5rem;">
-                <?= htmlspecialchars($error) ?>
-            </div>
-        <?php endif; ?>
+         <!--add code here -->
 
         <!-- Profile header card: avatar initial, name, email, role badge -->
         <div class="card mb-3" style="text-align:center; padding:2rem;">
 
             <!-- Avatar circle shows first letter of user's name -->
             <div style="width:72px;height:72px;border-radius:50%;background:#00b4d8;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;color:#fff;margin:0 auto 1rem;">
-                <?= strtoupper(mb_substr($user['name'], 0, 1)) ?>
+            <!--add code -->
+                U
             </div>
-
-            <h2 style="font-size:1.2rem; font-weight:700;"><?= htmlspecialchars($user['name']) ?></h2>
-            <p class="text-muted"><?= htmlspecialchars($user['email']) ?></p>
+              <!--add code -->
+            <h2 style="font-size:1.2rem; font-weight:700;">SampleName</h2>
+            <p class="text-muted">SampleEmail</p>
 
             <!-- Role badge color: green=employer, blue=admin, yellow=seeker -->
-            <span class="status-badge <?= $user['role']==='employer'?'status-accepted':($user['role']==='admin'?'status-reviewed':'status-pending') ?>" style="margin-top:0.5rem; display:inline-block;">
-                <?= ucfirst($user['role']) ?>
+
+             <!--add code in span-->
+
+           <span class="status-badge status-pending" style="margin-top:0.5rem; display:inline-block;">
+            User
             </span>
         </div>
 
@@ -62,13 +37,18 @@ require_once '../includes/header.php';
             <h3 style="font-size:1rem; font-weight:600; margin-bottom:1.5rem;">Edit Information</h3>
 
             <!-- Form POSTs to same page for backend to process -->
-            <form method="POST" action="<?= BASE_URL ?>/pages/profile.php" data-validate>
+
+            <!--update # with url-->
+
+            <form method="POST" action="#" data-validate>
+
+                <!--add code in value-->
 
                 <div class="form-group">
                     <label class="form-label" for="name">Full Name *</label>
                     <input type="text" id="name" name="name"
                            class="form-control"
-                           value="<?= htmlspecialchars($user['name']) ?>"
+                           value=""
                            required>
                     <span class="form-error">Name is required.</span>
                 </div>
@@ -76,7 +56,10 @@ require_once '../includes/header.php';
                 <!-- Email is read-only, cannot be changed -->
                 <div class="form-group">
                     <label class="form-label">Email Address</label>
-                    <input type="email" class="form-control" value="<?= htmlspecialchars($user['email']) ?>" disabled
+
+                    <!--replace sampleEmail-->
+
+                    <input type="email" class="form-control" value="Sample@Email.com" disabled
                            style="opacity:0.6; cursor:not-allowed;">
                     <small class="text-muted">Email cannot be changed.</small>
                 </div>
@@ -87,7 +70,7 @@ require_once '../includes/header.php';
                         <input type="text" id="phone" name="phone"
                                class="form-control"
                                placeholder="+977 98XXXXXXXX"
-                               value="<?= htmlspecialchars($user['phone'] ?? '') ?>">
+                               value="">
                     </div>
 
                     <div class="form-group">
@@ -95,16 +78,18 @@ require_once '../includes/header.php';
                         <input type="text" id="location" name="location"
                                class="form-control"
                                placeholder="e.g. Kathmandu"
-                               value="<?= htmlspecialchars($user['location'] ?? '') ?>">
+                               value="">
                     </div>
                 </div>
+
+                <!--change code next to placeholder-->
 
                 <div class="form-group">
                     <label class="form-label" for="bio">Bio / About</label>
                     <textarea id="bio" name="bio"
                               class="form-control"
                               rows="3"
-                              placeholder="Tell employers a bit about yourself..."><?= htmlspecialchars($user['bio'] ?? '') ?></textarea>
+                              placeholder="Tell employers a bit about yourself..."></textarea>
                 </div>
 
                 <!-- Divider before password section -->
@@ -128,7 +113,7 @@ require_once '../includes/header.php';
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">💾 Save Changes</button>
+                <button type="submit" class="btn btn-primary"> Save Changes</button>
 
             </form>
         </div>
@@ -137,4 +122,3 @@ require_once '../includes/header.php';
 </div>
 
 <!-- Load footer (closing HTML tags, scripts) -->
-<?php require_once '../includes/footer.php'; ?>
