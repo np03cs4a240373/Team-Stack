@@ -1,0 +1,9 @@
+/* ============================================================
+   auth.css — login.php and signup.php
+   style.css already covers: .auth-page, .auth-card, .auth-logo,
+   .auth-title, .auth-subtitle, .auth-switch, .role-selector,
+   .role-label, .role-option, .form-group, .form-control, .btn.
+   This file adds only auth-page-specific rules not in style.css.
+   ============================================================ */
+
+/* No additional rules needed — style.css covers the full auth pages. */
