@@ -9,7 +9,7 @@
 
 <div class="dashboard-body">
 
-    <!-- 3 stat cards: total apps, accepted, saved jobs -->
+    <!-- 3 stat cards: total apps count, accepted, saved jobs -->
     <div class="grid-3 mb-3">
         <div class="stat-card">
             <div class="stat-icon stat-icon-plain">
