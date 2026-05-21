@@ -1,0 +1,306 @@
+<div class="page-header">
+    <div class="container">
+
+        <!-- Page Title -->
+        <h1>Applicants</h1>
+
+        <p>Review candidates who applied for your jobs</p>
+
+    </div>
+</div>
+
+<div class="container section">
+
+    <!-- Filter by Job -->
+    <div class="card mb-3" style="padding:1rem 1.5rem;">
+
+        <form method="GET" style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
+
+            <label style="font-weight:600; font-size:.9rem; white-space:nowrap;">
+                Filter by Job:
+            </label>
+
+            <div style="position:relative; flex:1; min-width:180px; max-width:320px;">
+
+                <select name="job_id" class="form-control"
+                    style="appearance:none; -webkit-appearance:none; padding-right:2rem; cursor:pointer;"
+                    onchange="this.form.submit()">
+
+                    <option value="">All Jobs</option>
+
+                    <option value="1">
+                        Frontend Developer
+                    </option>
+
+                </select>
+
+                <!-- Dropdown Icon -->
+                <svg style="position:absolute;right:0.7rem;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+
+            </div>
+
+            <!-- Applicants Count -->
+            <span class="text-muted text-sm">
+                10 applicant(s)
+            </span>
+
+        </form>
+
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state">
+
+        <h3>No applicants yet</h3>
+
+        <p>Applicants will appear here once people apply for your jobs.</p>
+
+    </div>
+
+    <!-- Applicants Table -->
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Applicant</th>
+                    <th>Job</th>
+                    <th>Cover Letter</th>
+                    <th>Resume</th>
+                    <th>Applied</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <!-- Applicant Row -->
+                <tr>
+
+                    <td>
+
+                        <strong>John Doe</strong>
+
+                        <div class="text-muted text-xs">
+                            john@gmail.com
+                        </div>
+
+                        <div class="text-muted text-xs">
+                            Kathmandu
+                        </div>
+
+                        <div style="margin-top:0.4rem;">
+
+                            <!-- View Profile Button -->
+                            <a href="#"
+                               class="btn btn-outline btn-sm"
+                               style="font-size:0.72rem; padding:0.2rem 0.6rem;">
+
+                                View Profile
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                    <td>
+                        Frontend Developer
+                    </td>
+
+                    <td>
+
+                        <!-- Cover Letter -->
+                        <span title="Cover letter text"
+                              style="cursor:help; font-size:0.82rem;">
+
+                            I am interested in this job...
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <!-- Download Resume -->
+                        <a href="#"
+                           class="btn btn-outline btn-sm"
+                           style="display:inline-flex;align-items:center;gap:0.3rem;">
+
+                            <svg width="12" height="12" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+
+                            </svg>
+
+                            Download CV
+
+                        </a>
+
+                    </td>
+
+                    <td>
+                        May 21, 2026
+                    </td>
+
+                    <td>
+
+                        <!-- Application Status -->
+                        <span class="status-badge status-pending">
+                            Pending
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <!-- Update Status -->
+                        <div style="display:flex; gap:0.4rem; align-items:center;">
+
+                            <select class="form-control status-select"
+                                    style="font-size:0.8rem; padding:0.3rem 0.5rem; width:auto;">
+
+                                <option>Applied</option>
+                                <option>Pending</option>
+                                <option>Reviewed</option>
+                                <option>Shortlisted</option>
+                                <option>Interview</option>
+                                <option>Accepted</option>
+                                <option>Rejected</option>
+
+                            </select>
+
+                            <button class="btn btn-primary btn-sm">
+                                Save
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- Pagination -->
+    <div style="display:flex; justify-content:center; gap:0.5rem; margin-top:1.5rem; flex-wrap:wrap;">
+
+        <a href="#" class="btn btn-outline btn-sm">
+            ← Prev
+        </a>
+
+        <a href="#" class="btn btn-sm btn-primary">
+            1
+        </a>
+
+        <a href="#" class="btn btn-outline btn-sm">
+            Next →
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+(function () {
+
+    // Save application status
+    document.querySelectorAll('.save-status-btn').forEach(function (btn) {
+
+        btn.addEventListener('click', function () {
+
+            const appId = this.dataset.appId;
+
+            const select = document.querySelector(
+                '.status-select[data-app-id="' + appId + '"]'
+            );
+
+            const status = select.value;
+
+            const self = this;
+
+            self.disabled = true;
+            self.textContent = '…';
+
+            const fd = new FormData();
+
+            fd.append('application_id', appId);
+            fd.append('status', status);
+
+            // Send status update request
+            fetch(BASE_URL + '/api/update-application-status.php', {
+
+                method: 'POST',
+                body: fd
+
+            })
+
+            .then(r => r.json())
+
+            .then(data => {
+
+                if (data.success) {
+
+                    const badge = document.getElementById(
+                        'status-badge-' + appId
+                    );
+
+                    if (badge) {
+
+                        badge.className = 'status-badge status-' + status;
+
+                        badge.textContent =
+                            status.charAt(0).toUpperCase() + status.slice(1);
+
+                    }
+
+                    self.textContent = 'Saved ✓';
+                    self.style.background = '#10b981';
+
+                    setTimeout(() => {
+
+                        self.textContent = 'Save';
+                        self.style.background = '';
+                        self.disabled = false;
+
+                    }, 2000);
+
+                } else {
+
+                    alert(data.error || 'Failed to update status.');
+
+                    self.disabled = false;
+                    self.textContent = 'Save';
+
+                }
+
+            })
+
+            .catch(() => {
+
+                alert('Network error.');
+
+                self.disabled = false;
+                self.textContent = 'Save';
+
+            });
+
+        });
+
+    });
+
+})();
+</script>
