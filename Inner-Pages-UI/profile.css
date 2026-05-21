@@ -1,0 +1,385 @@
+/* Main color variables */
+:root {
+  --primary: #00b4d8;
+  --primary-dark: #0096b3;
+  --primary-light: rgba(0, 180, 216, 0.12);
+  --accent: #38c9e8;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #60a5fa;
+
+  /* Background colors */
+  --bg: #f8fafc;
+  --bg-2: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-solid: #ffffff;
+  --bg-nav: rgba(255, 255, 255, 0.92);
+
+  /* Text colors */
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+
+  /* Border and shadow */
+  --border: rgba(0, 0, 0, 0.08);
+  --border-glow: rgba(0, 180, 216, 0.45);
+  --shadow: rgba(0, 0, 0, 0.07);
+  --shadow-md: rgba(0, 0, 0, 0.13);
+
+  /* Gradient colors */
+  --gradient: #00b4d8;
+  --gradient-text: linear-gradient(135deg, #00b4d8 0%, #0077a8 100%);
+  --gradient-gold: linear-gradient(135deg, #00b4d8 0%, #0096b3 100%);
+
+  /* Border radius */
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+
+  /* Transition speed */
+  --transition: 0.25s ease;
+}
+
+/* Light theme settings */
+[data-theme="light"] {
+  --border-glow: rgba(0, 180, 216, 0.4);
+  --primary-light: rgba(0, 180, 216, 0.1);
+}
+
+/* Reset default browser styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body styling */
+body {
+  font-family: "Satoshi", "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Link styling */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* Remove list style */
+ul {
+  list-style: none;
+}
+
+/* Responsive image */
+img {
+  max-width: 100%;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navbar section */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg-nav);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Navbar container */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+/* Logo styling */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+/* Logo image */
+.logo-img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+/* Navbar links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Navbar link design */
+.nav-links a {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+/* Navbar hover effect */
+.nav-links a:hover {
+  color: var(--text);
+  background: var(--primary-light);
+}
+
+/* Active navbar link */
+.nav-links a.active {
+  color: var(--primary);
+}
+
+/* Hamburger menu for mobile */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hamburger lines */
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+}
+
+/* Common button style */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all var(--transition);
+}
+
+/* Primary button */
+.btn-primary {
+  background: #00b4d8;
+  color: #fff;
+}
+
+/* Primary button hover */
+.btn-primary:hover {
+  background: #0096b3;
+}
+
+/* Outline button */
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Outline button hover */
+.btn-outline:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Ghost button */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+/* Danger button */
+.btn-danger {
+  background: var(--error);
+  color: #fff;
+}
+
+/* Success button */
+.btn-success {
+  background: var(--success);
+  color: #fff;
+}
+
+/* Small button */
+.btn-sm {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+}
+
+/* Large button */
+.btn-lg {
+  padding: 0.8rem 2rem;
+  font-size: 0.95rem;
+}
+
+/* Full width button */
+.btn-block {
+  width: 100%;
+}
+
+/* Form group spacing */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+/* Form label */
+.form-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+/* Input field style */
+.form-control {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  outline: none;
+}
+
+/* Input focus effect */
+.form-control:focus {
+  border-color: var(--primary);
+}
+
+/* Card design */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+/* Card hover effect */
+.card:hover {
+  border-color: var(--border-glow);
+}
+
+/* Grid with 2 columns */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* Grid with 3 columns */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Grid with 4 columns */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+/* Footer section */
+.footer {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+/* Footer container */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 2rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+}
+
+/* Footer text */
+.footer-brand p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Footer links */
+.footer-links a {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Footer link hover */
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+/* Footer bottom text */
+.footer-bottom {
+  text-align: center;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-light);
+  font-size: 0.8rem;
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+}
