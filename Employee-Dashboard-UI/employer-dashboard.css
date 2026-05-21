@@ -1,0 +1,223 @@
+/* Main colors and reusable values used across the website */
+:root {
+
+  /* Primary brand colors */
+  --primary: #00b4d8;
+  --primary-dark: #0096b3;
+  --primary-light: rgba(0, 180, 216, 0.12);
+
+  /* Extra highlight colors */
+  --accent: #38c9e8;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #60a5fa;
+
+  /* Background colors */
+  --bg: #f8fafc;
+  --bg-2: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-solid: #ffffff;
+  --bg-nav: rgba(255, 255, 255, 0.92);
+
+  /* Text colors */
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+
+  /* Border and shadow colors */
+  --border: rgba(0, 0, 0, 0.08);
+  --border-glow: rgba(0, 180, 216, 0.45);
+  --shadow: rgba(0, 0, 0, 0.07);
+  --shadow-md: rgba(0, 0, 0, 0.13);
+  --shadow-cyan: 0 0 40px rgba(0, 180, 216, 0.18);
+
+  /* Gradient colors */
+  --gradient: #00b4d8;
+  --gradient-text: linear-gradient(135deg, #00b4d8 0%, #0077a8 100%);
+  --gradient-gold: linear-gradient(135deg, #00b4d8 0%, #0096b3 100%);
+
+  /* Hero section background */
+  --hero-bg: #f8fafc;
+  --hero-gradient: linear-gradient(
+    135deg,
+    #e0f7fa 0%,
+    #f0fdff 50%,
+    #f8fafc 100%
+  );
+
+  /* Border radius values */
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+
+  /* Common transition speed */
+  --transition: 0.25s ease;
+}
+
+/* Light theme settings */
+[data-theme="light"] {
+  --border-glow: rgba(0, 180, 216, 0.4);
+  --shadow-cyan: 0 0 30px rgba(0, 180, 216, 0.12);
+  --primary-light: rgba(0, 180, 216, 0.1);
+}
+
+/* Reset default browser styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth scrolling for page links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Main body styling */
+body {
+  font-family: "Satoshi", "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  transition:
+    background var(--transition),
+    color var(--transition);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Default link styling */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+/* Link hover effect */
+a:hover {
+  color: var(--accent);
+}
+
+/* Remove list bullets */
+ul {
+  list-style: none;
+}
+
+/* Make images responsive */
+img {
+  max-width: 100%;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gold gradient text effect */
+.gradient-text-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+}
+
+/* Navigation bar styling */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg-nav);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+
+/* Navbar content container */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+/* Website logo styling */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+/* Keep logo text color same on hover */
+.nav-logo:hover {
+  color: var(--text);
+}
+
+/* Main logo image */
+.logo-img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+/* Small logo version */
+.logo-sm {
+  width: 26px;
+  height: 26px;
+}
+
+/* Highlight color in logo */
+.logo-accent {
+  color: var(--primary);
+}
+
+/* Navigation links container */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Individual navigation links */
+.nav-links a {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+/* Navigation link hover effect */
+.nav-links a:hover {
+  color: var(--text);
+  background: var(--primary-light);
+}
+
+/* Active navigation link */
+.nav-links a.active {
+  color: var(--primary);
+}
+
+/* User profile link */
+.nav-profile {
+  color: var(--text) !important;
+  font-weight: 600 !important;
+}
