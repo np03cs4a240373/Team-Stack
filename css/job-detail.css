@@ -1,4 +1,19 @@
 
+.job-badge {
+  display: inline-block;
+  padding: 0.22rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.badge-full-time  { background: rgba(0,180,216,0.12);   color: #0096b3; }
+.badge-part-time  { background: rgba(245,158,11,0.12);  color: #b45309; }
+.badge-remote     { background: rgba(16,185,129,0.12);  color: #047857; }
+.badge-contract   { background: rgba(139,92,246,0.12);  color: #6d28d9; }
+.badge-internship { background: rgba(239,68,68,0.12);   color: #b91c1c; }
+
 :root {
   --primary: #00b4d8;
   --primary-dark: #0096b3;
@@ -595,6 +610,10 @@ tr:hover td {
   background: rgba(239, 68, 68, 0.15);
   color: #ef4444;
 }
+.status-expired {
+  background: rgba(251, 191, 36, 0.15);
+  color: #b45309;
+}
 .status-closed {
   background: rgba(0, 180, 216, 0.08);
   color: #0096b3;
@@ -606,6 +625,10 @@ tr:hover td {
 [data-theme="light"] .status-active {
   background: #e0f7fa;
   color: #006b8f;
+}
+[data-theme="light"] .status-expired {
+  background: #fef3c7;
+  color: #92400e;
 }
 [data-theme="light"] .status-rejected {
   background: #fee2e2;
@@ -1074,3 +1097,16 @@ tr:hover td {
   font-weight: 700;
   margin-bottom: 1rem;
 }
+.applicant-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
