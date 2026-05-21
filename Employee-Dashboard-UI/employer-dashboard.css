@@ -1,69 +1,39 @@
-/* Main colors and reusable values used across the website */
+/* Website colors and variables */
 :root {
-
-  /* Primary brand colors */
   --primary: #00b4d8;
   --primary-dark: #0096b3;
   --primary-light: rgba(0, 180, 216, 0.12);
-
-  /* Extra highlight colors */
   --accent: #38c9e8;
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
   --info: #60a5fa;
 
-  /* Background colors */
   --bg: #f8fafc;
   --bg-2: #f1f5f9;
   --bg-card: #ffffff;
   --bg-card-solid: #ffffff;
   --bg-nav: rgba(255, 255, 255, 0.92);
-
-  /* Text colors */
   --text: #1e293b;
   --text-muted: #64748b;
   --text-light: #94a3b8;
-
-  /* Border and shadow colors */
   --border: rgba(0, 0, 0, 0.08);
   --border-glow: rgba(0, 180, 216, 0.45);
-  --shadow: rgba(0, 0, 0, 0.07);
-  --shadow-md: rgba(0, 0, 0, 0.13);
-  --shadow-cyan: 0 0 40px rgba(0, 180, 216, 0.18);
 
-  /* Gradient colors */
-  --gradient: #00b4d8;
-  --gradient-text: linear-gradient(135deg, #00b4d8 0%, #0077a8 100%);
-  --gradient-gold: linear-gradient(135deg, #00b4d8 0%, #0096b3 100%);
-
-  /* Hero section background */
-  --hero-bg: #f8fafc;
-  --hero-gradient: linear-gradient(
-    135deg,
-    #e0f7fa 0%,
-    #f0fdff 50%,
-    #f8fafc 100%
-  );
-
-  /* Border radius values */
   --radius: 14px;
   --radius-sm: 8px;
   --radius-lg: 24px;
   --radius-xl: 40px;
-
-  /* Common transition speed */
   --transition: 0.25s ease;
 }
 
-/* Light theme settings */
+/* Light mode settings */
 [data-theme="light"] {
   --border-glow: rgba(0, 180, 216, 0.4);
-  --shadow-cyan: 0 0 30px rgba(0, 180, 216, 0.12);
   --primary-light: rgba(0, 180, 216, 0.1);
 }
 
-/* Reset default browser styles */
+/* Reset browser default spacing */
 *,
 *::before,
 *::after {
@@ -72,31 +42,26 @@
   padding: 0;
 }
 
-/* Smooth scrolling for page links */
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Main body styling */
+/* Main body style */
 body {
   font-family: "Satoshi", "Poppins", sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.65;
-  transition:
-    background var(--transition),
-    color var(--transition);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  -webkit-font-smoothing: antialiased;
 }
 
-/* Default link styling */
+/* Link styles */
 a {
   color: var(--primary);
   text-decoration: none;
-  transition: color var(--transition);
 }
 
 /* Link hover effect */
@@ -104,12 +69,12 @@ a:hover {
   color: var(--accent);
 }
 
-/* Remove list bullets */
+/* Remove bullet points */
 ul {
   list-style: none;
 }
 
-/* Make images responsive */
+/* Responsive images */
 img {
   max-width: 100%;
 }
@@ -119,31 +84,26 @@ img {
   background: var(--gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
-/* Gold gradient text effect */
+/* Gold gradient text */
 .gradient-text-gold {
   background: var(--gradient-gold);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
   font-style: italic;
 }
 
-/* Navigation bar styling */
+/* Navbar section */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
   background: var(--bg-nav);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
-  transition: background var(--transition);
 }
 
-/* Navbar content container */
+/* Navbar container */
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -154,70 +114,287 @@ img {
   height: 64px;
 }
 
-/* Website logo styling */
+/* Website logo */
 .nav-logo {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 1.35rem;
   font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.5px;
 }
 
-/* Keep logo text color same on hover */
-.nav-logo:hover {
-  color: var(--text);
-}
-
-/* Main logo image */
+/* Logo image */
 .logo-img {
   width: 34px;
   height: 34px;
   object-fit: contain;
 }
 
-/* Small logo version */
+/* Small logo */
 .logo-sm {
   width: 26px;
   height: 26px;
 }
 
-/* Highlight color in logo */
+/* Logo accent color */
 .logo-accent {
   color: var(--primary);
 }
 
-/* Navigation links container */
+/* Navigation links */
 .nav-links {
   display: flex;
   align-items: center;
   gap: 0.25rem;
 }
 
-/* Individual navigation links */
+/* Navbar links */
 .nav-links a {
   color: var(--text-muted);
   font-size: 0.875rem;
   font-weight: 500;
   padding: 0.4rem 0.85rem;
   border-radius: var(--radius-sm);
-  transition: all var(--transition);
 }
 
-/* Navigation link hover effect */
+/* Navbar hover effect */
 .nav-links a:hover {
   color: var(--text);
   background: var(--primary-light);
 }
 
-/* Active navigation link */
+/* Active navbar link */
 .nav-links a.active {
   color: var(--primary);
 }
 
-/* User profile link */
+/* Profile navigation */
 .nav-profile {
   color: var(--text) !important;
   font-weight: 600 !important;
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hamburger lines */
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+}
+
+/* Common button style */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+}
+
+/* Primary button */
+.btn-primary {
+  background: #00b4d8;
+  color: #fff;
+}
+
+/* Outline button */
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Ghost button */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+/* Danger button */
+.btn-danger {
+  background: var(--error);
+  color: #fff;
+}
+
+/* Success button */
+.btn-success {
+  background: var(--success);
+  color: #fff;
+}
+
+/* Small button */
+.btn-sm {
+  padding: 0.35rem 0.9rem;
+}
+
+/* Large button */
+.btn-lg {
+  padding: 0.8rem 2rem;
+}
+
+/* Extra large button */
+.btn-xl {
+  padding: 1rem 2.5rem;
+}
+
+/* Full width button */
+.btn-block {
+  width: 100%;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background: var(--primary-light);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+}
+
+/* Flash messages */
+.flash {
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Success flash */
+.flash-success {
+  background: rgba(0, 180, 216, 0.1);
+}
+
+/* Error flash */
+.flash-error {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Warning flash */
+.flash-warning {
+  background: rgba(0, 180, 216, 0.08);
+}
+
+/* Info flash */
+.flash-info {
+  background: rgba(0, 180, 216, 0.08);
+}
+
+/* Close flash button */
+.flash-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+}
+
+/* Main container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Section spacing */
+.section {
+  padding: 5rem 1.5rem;
+}
+
+/* Small section spacing */
+.section-sm {
+  padding: 3rem 1.5rem;
+}
+
+/* Dashboard header */
+.dashboard-header {
+  position: relative;
+  overflow: hidden;
+  padding: 3rem 1.5rem;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Dashboard title */
+.dashboard-header h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+/* Dashboard subtitle */
+.dashboard-header p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+/* Dashboard body */
+.dashboard-body {
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Statistics card */
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Statistics icon */
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-sm);
+  background: #00b4d8;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Plain statistics icon */
+.stat-icon.stat-icon-plain {
+  background: none;
+  color: var(--primary);
+}
+
+/* Statistics info */
+.stat-info {
+  flex: 1;
+}
+
+/* Statistics number */
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* Statistics label */
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
