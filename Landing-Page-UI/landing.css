@@ -1,0 +1,11 @@
+/* ============================================================
+   landing.css — index.php only
+   style.css already covers: .hero, .hero-content, .hero-badge,
+   .hero-search, .hero-ctas, .hero-stats, .step-card, .step-num,
+   .testimonial-card, .comparison-wrap, .cta-section, .glow-divider,
+   .section-label, .section-title, .section-subtitle, .gradient-text,
+   .gradient-text-gold, .section-dark, .section-alt.
+   This file adds only landing-page-specific rules not in style.css.
+   ============================================================ */
+
+/* No additional rules needed — style.css covers the full landing page. */
