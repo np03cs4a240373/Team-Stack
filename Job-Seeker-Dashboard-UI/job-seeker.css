@@ -41,7 +41,7 @@
   --transition: 0.25s ease;
 }
 
-/* Light theme settings */
+/* Light theme settings (only theme)*/
 [data-theme="light"] {
   --border-glow: rgba(0, 180, 216, 0.4);
   --shadow-cyan: 0 0 30px rgba(0, 180, 216, 0.12);
