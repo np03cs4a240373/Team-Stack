@@ -1,7 +1,5 @@
 <?php
-// ============================================================
-// pages/analytics.php - Employer: Basic Job Analytics
-// ============================================================
+
 require_once '../includes/auth.php';
 require_once '../includes/db.php';
 
@@ -27,12 +25,22 @@ $stmt->execute([$userId]);
 $jobStats = $stmt->fetchAll();
 
 $totalApplications = array_sum(array_column($jobStats, 'total_apps'));
-$maxApps = max(1, max(array_column($jobStats, 'total_apps') ?: [1]));
+$maxApps           = max(1, max(array_column($jobStats, 'total_apps') ?: [1]));
+
+$activeJobsCount = $pdo->prepare("SELECT COUNT(*) FROM jobs WHERE employer_id = ? AND status = 'active'");
+$activeJobsCount->execute([$userId]);
+$activeJobsCount = (int)$activeJobsCount->fetchColumn();
 
 $pageTitle = 'Analytics';
-$pageCss = 'analytics';
+$pageCss = 'employer-dashboard';
 require_once '../includes/header.php';
 ?>
+
+<style>
+.analytics-bar-wrap { margin-top: 0.5rem; }
+.analytics-bar-bg { background: var(--border); border-radius: 50px; height: 7px; }
+.analytics-bar-fill { background: #00b4d8; border-radius: 50px; height: 7px; transition: width 1s ease; }
+</style>
 
 <div class="page-header">
     <div class="container">
@@ -44,28 +52,41 @@ require_once '../includes/header.php';
 <div class="container section">
 
     <!-- Overview Stats -->
-    <div class="grid-4 mb-3">
+    <div class="grid-3 mb-3">
         <div class="stat-card">
             <div class="stat-icon stat-icon-plain">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
             </div>
             <div class="stat-info">
                 <div class="stat-value"><?= count($jobStats) ?></div>
-                <div class="stat-label">Total Jobs</div>
-            </div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon stat-icon-plain">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
-            </div>
-            <div class="stat-info">
-                <div class="stat-value"><?= $totalApplications ?></div>
-                <div class="stat-label">Total Applications</div>
+                <div class="stat-label">Total Jobs Posted</div>
             </div>
         </div>
         <div class="stat-card">
             <div class="stat-icon stat-icon-plain">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value"><?= $activeJobsCount ?></div>
+                <div class="stat-label">Active Jobs</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-plain">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value"><?= $totalApplications ?></div>
+                <div class="stat-label">Total Applicants</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secondary Stats -->
+    <div class="grid-3 mb-3">
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-plain">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
             </div>
             <div class="stat-info">
                 <div class="stat-value"><?= array_sum(array_column($jobStats, 'accepted')) ?></div>
@@ -79,6 +100,15 @@ require_once '../includes/header.php';
             <div class="stat-info">
                 <div class="stat-value"><?= array_sum(array_column($jobStats, 'pending')) ?></div>
                 <div class="stat-label">Pending Review</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-plain">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value"><?= array_sum(array_column($jobStats, 'rejected')) ?></div>
+                <div class="stat-label">Rejected</div>
             </div>
         </div>
     </div>
