@@ -1,7 +1,5 @@
 <?php
-// ============================================================
 // api/logout.php - Destroy session and redirect to login
-// ============================================================
 require_once '../includes/auth.php';
 
 // Destroy all session data

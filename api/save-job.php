@@ -1,9 +1,5 @@
 <?php
-// ============================================================
-// api/save-job.php - AJAX: Save / Bookmark a Job
-// Called by: js/main.js saveJob()
-// Returns JSON: { success: true } or { error: "..." }
-// ============================================================
+
 
 require_once '../includes/auth.php';
 require_once '../includes/db.php';
