@@ -14,8 +14,8 @@ $pdo = getPDO();
 $totalUsers       = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
 $totalSeekers     = $pdo->query("SELECT COUNT(*) FROM users WHERE role='seeker'")->fetchColumn();
 $totalEmployers   = $pdo->query("SELECT COUNT(*) FROM users WHERE role='employer'")->fetchColumn();
-$totalJobs        = $pdo->query("SELECT COUNT(*) FROM jobs")->fetchColumn();
-$activeJobs       = $pdo->query("SELECT COUNT(*) FROM jobs WHERE status='active'")->fetchColumn();
+$totalJobs        = $pdo->query("SELECT COUNT(*) FROM jobs WHERE is_deleted = 0")->fetchColumn();
+$activeJobs       = $pdo->query("SELECT COUNT(*) FROM jobs WHERE is_deleted = 0 AND status='active'")->fetchColumn();
 $totalApplications= $pdo->query("SELECT COUNT(*) FROM applications")->fetchColumn();
 
 // Recent users
@@ -28,6 +28,7 @@ $recentJobs = $pdo->query("
     SELECT jobs.*, users.name AS employer_name
     FROM jobs
     JOIN users ON jobs.employer_id = users.id
+    WHERE jobs.is_deleted = 0
     ORDER BY jobs.created_at DESC
     LIMIT 5
 ")->fetchAll();
@@ -140,7 +141,7 @@ require_once '../includes/header.php';
                                     <?php if ($user['id'] !== getUserId()): ?>
                                         <a href="<?= BASE_URL ?>/api/delete.php?type=user&id=<?= $user['id'] ?>"
                                            onclick="return confirm('Delete user <?= htmlspecialchars(addslashes($user['name'])) ?>?')"
-                                           class="btn btn-danger btn-sm">Delete</a>
+                                           class="btn btn-danger btn-sm btn-dashboard-delete">Delete</a>
                                     <?php else: ?>
                                         <span class="text-muted text-sm">You</span>
                                     <?php endif; ?>
@@ -176,7 +177,7 @@ require_once '../includes/header.php';
                                 <td>
                                     <a href="<?= BASE_URL ?>/api/delete.php?type=job&id=<?= $job['id'] ?>"
                                        onclick="return confirm('Delete this job?')"
-                                       class="btn btn-danger btn-sm">Delete</a>
+                                       class="btn btn-danger btn-sm btn-dashboard-delete">Delete</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -187,5 +188,15 @@ require_once '../includes/header.php';
     </div>
 
 </div>
+
+<style>
+.btn-dashboard-delete {
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.btn-dashboard-delete:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+}
+</style>
 
 <?php require_once '../includes/footer.php'; ?>

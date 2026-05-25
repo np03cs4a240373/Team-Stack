@@ -17,7 +17,7 @@ $stmt = $pdo->prepare("
            SUM(applications.status = 'pending')  AS pending
     FROM jobs
     LEFT JOIN applications ON jobs.id = applications.job_id
-    WHERE jobs.employer_id = ?
+    WHERE jobs.employer_id = ? AND jobs.is_deleted = 0
     GROUP BY jobs.id
     ORDER BY total_apps DESC
 ");
@@ -27,7 +27,7 @@ $jobStats = $stmt->fetchAll();
 $totalApplications = array_sum(array_column($jobStats, 'total_apps'));
 $maxApps           = max(1, max(array_column($jobStats, 'total_apps') ?: [1]));
 
-$activeJobsCount = $pdo->prepare("SELECT COUNT(*) FROM jobs WHERE employer_id = ? AND status = 'active'");
+$activeJobsCount = $pdo->prepare("SELECT COUNT(*) FROM jobs WHERE employer_id = ? AND status = 'active' AND is_deleted = 0");
 $activeJobsCount->execute([$userId]);
 $activeJobsCount = (int)$activeJobsCount->fetchColumn();
 
@@ -149,9 +149,9 @@ require_once '../includes/header.php';
 
                     <!-- Breakdown -->
                     <div style="display:flex; gap:1rem; margin-top:0.5rem; font-size:0.82rem; flex-wrap:wrap;">
-                        <span style="color:var(--warning);">Pending: <?= $stat['pending'] ?></span>
-                        <span style="color:var(--success);">Accepted: <?= $stat['accepted'] ?></span>
-                        <span style="color:var(--error);">Rejected: <?= $stat['rejected'] ?></span>
+                        <span style="color:var(--warning);">Pending: <?= (int)$stat['pending'] ?></span>
+                        <span style="color:var(--success);">Accepted: <?= (int)$stat['accepted'] ?></span>
+                        <span style="color:var(--error);">Rejected: <?= (int)$stat['rejected'] ?></span>
                     </div>
                 </div>
             <?php endforeach; ?>

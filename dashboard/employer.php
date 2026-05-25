@@ -13,18 +13,18 @@ autoExpireJobs($pdo);
 $userId = getUserId();
 
 // Stats
-$totalJobs = $pdo->prepare("SELECT COUNT(*) FROM jobs WHERE employer_id = ?");
+$totalJobs = $pdo->prepare("SELECT COUNT(*) FROM jobs WHERE employer_id = ? AND is_deleted = 0");
 $totalJobs->execute([$userId]);
 $totalJobs = $totalJobs->fetchColumn();
 
-$activeJobs = $pdo->prepare("SELECT COUNT(*) FROM jobs WHERE employer_id = ? AND status = 'active' AND (deadline IS NULL OR deadline >= CURDATE())");
+$activeJobs = $pdo->prepare("SELECT COUNT(*) FROM jobs WHERE employer_id = ? AND is_deleted = 0 AND status = 'active' AND (deadline IS NULL OR deadline >= CURDATE())");
 $activeJobs->execute([$userId]);
 $activeJobs = $activeJobs->fetchColumn();
 
 $totalApplicants = $pdo->prepare("
     SELECT COUNT(*) FROM applications
     JOIN jobs ON applications.job_id = jobs.id
-    WHERE jobs.employer_id = ?
+    WHERE jobs.employer_id = ? AND jobs.is_deleted = 0
 ");
 $totalApplicants->execute([$userId]);
 $totalApplicants = $totalApplicants->fetchColumn();
@@ -35,7 +35,7 @@ $stmt = $pdo->prepare("
            COUNT(applications.id) AS applicant_count
     FROM jobs
     LEFT JOIN applications ON jobs.id = applications.job_id
-    WHERE jobs.employer_id = ?
+    WHERE jobs.employer_id = ? AND jobs.is_deleted = 0
     GROUP BY jobs.id
     ORDER BY jobs.created_at DESC
     LIMIT 5

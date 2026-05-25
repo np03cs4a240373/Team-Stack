@@ -51,7 +51,7 @@ function getRuleBasedReply(string $msg): ?string {
 
     // Track application / application status
     if (preg_match('/track|status|application.*status|my application/', $m))
-        return "To track your applications:\n• Go to \"My Applications\" in the nav menu\n• You'll see each application with its status:\n  – Pending: employer hasn't reviewed yet\n  – Reviewed: employer has seen your application\n  – Accepted: congratulations! 🎉\n  – Rejected: keep applying, don't give up!\n\nStatus is updated by the employer.";
+        return "To track your applications:\n• Go to \"My Applications\" in the nav menu\n• You'll see each application with its status:\n  • Pending: employer hasn't reviewed yet\n  • Reviewed: employer has seen your application\n  • Accepted: congratulations! 🎉\n  • Rejected: keep applying, don't give up!\n\nStatus is updated by the employer.";
 
     // Post a job (employer)
     if (preg_match('/post.*job|create.*job|add.*job|employer.*post/', $m))
@@ -99,7 +99,7 @@ function getRuleBasedReply(string $msg): ?string {
 
     // Thank you
     if (preg_match('/thank|thanks|dhanyabad|shukriya/', $m))
-        return "You're welcome! 😊 Best of luck with your job search. If you have more questions, I'm always here. नमस्ते!";
+        return "You're welcome!  Best of luck with your job search. If you have more questions, I'm always here. नमस्ते!";
 
     // About KaamKhoji
     if (preg_match('/what is kaamkhoji|about kaamkhoji|kaamkhoji k ho/', $m))
@@ -117,7 +117,9 @@ $systemPrompt = "You are KaamBot, a helpful assistant for KaamKhoji — Nepal's 
     "You help job seekers find jobs, write cover letters, and prepare for interviews. " .
     "You also help employers post jobs and manage applicants. " .
     "Always be friendly, concise, and relevant to jobs and careers in Nepal. " .
-    "Reply in the same language the user writes in (Nepali or English).";
+    "Reply in the same language the user writes in (Nepali or English). " .
+    "If the user asks about anything unrelated to jobs, careers, or KaamKhoji, politely apologize and redirect them: say you are only able to help with job-related topics. " .
+    "Never use markdown dash lists (do not start lines with '- '). Use the bullet character • instead of dashes for any lists.";
 
 $contents = [];
 foreach (array_slice($history, -6) as $turn) {
@@ -168,7 +170,7 @@ if ($ruleReply !== null) {
 
 // Generic fallback
 echo json_encode(['reply' =>
-    "I'm KaamBot — I can help you with:\n" .
+    "Sorry, I can only help with job-related topics. Here's what I can assist with:\n" .
     "• Finding and applying for jobs\n" .
     "• Writing cover letters and resume tips\n" .
     "• Interview preparation\n" .
