@@ -1,7 +1,5 @@
-/* admin-pages.css — admin/users.php, admin/jobs.php*/
 
 :root {
-  /* brand colors */
   --primary: #00b4d8;
   --primary-dark: #0096b3;
   --primary-light: rgba(0, 180, 216, 0.12);
@@ -11,17 +9,16 @@
   --error: #ef4444;
   --info: #60a5fa;
 
-  /* backgrounds */
   --bg: #f8fafc;
   --bg-2: #f1f5f9;
   --bg-card: #ffffff;
   --bg-card-solid: #ffffff;
-  --bg-nav: rgba(255, 255, 255, 0.92); /* semi-transparent for blur effect */
+  --bg-nav: rgba(255, 255, 255, 0.92);
   --text: #1e293b;
   --text-muted: #64748b;
   --text-light: #94a3b8;
   --border: rgba(0, 0, 0, 0.08);
-  --border-glow: rgba(0, 180, 216, 0.45); /* blue glow on focus/hover */
+  --border-glow: rgba(0, 180, 216, 0.45);
   --shadow: rgba(0, 0, 0, 0.07);
   --shadow-md: rgba(0, 0, 0, 0.13);
   --shadow-cyan: 0 0 40px rgba(0, 180, 216, 0.18);
@@ -37,7 +34,6 @@
     #f8fafc 100%
   );
 
-  /* border radius sizes */
   --radius: 14px;
   --radius-sm: 8px;
   --radius-lg: 24px;
@@ -45,14 +41,16 @@
   --transition: 0.25s ease;
 }
 
-/* light mode adjustments */
+/* ---- Light Mode (now the only mode) ---- */
 [data-theme="light"] {
   --border-glow: rgba(0, 180, 216, 0.4);
   --shadow-cyan: 0 0 30px rgba(0, 180, 216, 0.12);
   --primary-light: rgba(0, 180, 216, 0.1);
 }
 
-/* remove default margin/padding from everything */
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
 *,
 *::before,
 *::after {
@@ -93,7 +91,9 @@ img {
   max-width: 100%;
 }
 
-/* shows text as blue gradient instead of solid color */
+/* ============================================================
+   UTILITY — GRADIENT TEXT
+   ============================================================ */
 .gradient-text {
   background: var(--gradient-text);
   -webkit-background-clip: text;
@@ -108,7 +108,9 @@ img {
   font-style: italic;
 }
 
-/* sticky navbar with glass blur effect */
+/* ============================================================
+   NAVBAR
+   ============================================================ */
 .navbar {
   position: sticky;
   top: 0;
@@ -158,7 +160,11 @@ img {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
+}
+.nav-links li {
+  display: flex;
+  align-items: center;
 }
 .nav-links a {
   color: var(--text-muted);
@@ -172,7 +178,6 @@ img {
   color: var(--text);
   background: var(--primary-light);
 }
-/* highlight current page link */
 .nav-links a.active {
   color: var(--primary);
 }
@@ -181,7 +186,6 @@ img {
   font-weight: 600 !important;
 }
 
-/* hidden on desktop, shows on mobile */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -200,7 +204,9 @@ img {
   transition: all var(--transition);
 }
 
-/* base style shared by all button types */
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -231,7 +237,6 @@ img {
   box-shadow: 0 6px 24px rgba(0, 180, 216, 0.4);
 }
 
-/* transparent with blue border */
 .btn-outline {
   background: transparent;
   color: var(--primary);
@@ -286,7 +291,9 @@ img {
   width: 100%;
 }
 
-/* round button to switch light/dark mode */
+/* ============================================================
+   THEME TOGGLE
+   ============================================================ */
 .theme-toggle {
   background: var(--primary-light);
   border: 1px solid var(--border);
@@ -307,7 +314,9 @@ img {
   transform: rotate(20deg);
 }
 
-/* alert banners that slide down from top */
+/* ============================================================
+   FLASH MESSAGES
+   ============================================================ */
 .flash {
   padding: 0.9rem 1.5rem;
   display: flex;
@@ -349,18 +358,25 @@ img {
   opacity: 1;
 }
 
-/* grows to fill remaining page height */
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
 .main-content {
   flex: 1;
 }
 
-/* centered page wrapper */
+/* ============================================================
+   CONTAINER
+   ============================================================ */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
+/* ============================================================
+   SECTION STYLES
+   ============================================================ */
 .section {
   padding: 5rem 1.5rem;
 }
@@ -374,7 +390,6 @@ img {
   background: rgba(255, 255, 255, 0.018);
 }
 
-/* small uppercase label shown above section title */
 .section-label {
   font-size: 0.72rem;
   font-weight: 700;
@@ -402,6 +417,9 @@ img {
   margin-right: auto;
 }
 
+/* ============================================================
+   CARDS
+   ============================================================ */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -413,7 +431,6 @@ img {
   background: #fff;
   box-shadow: 0 2px 12px var(--shadow);
 }
-/* card lifts up slightly on hover */
 .card:hover {
   border-color: var(--border-glow);
   background: rgba(0, 180, 216, 0.02);
@@ -421,7 +438,7 @@ img {
   box-shadow: 0 4px 16px rgba(0, 180, 216, 0.1);
 }
 
-/* responsive grid layouts */
+/* Grid layouts */
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -438,6 +455,11 @@ img {
   gap: 1.5rem;
 }
 
+/* ============================================================
+
+/* ============================================================
+   FORMS
+   ============================================================ */
 .form-group {
   margin-bottom: 1.25rem;
 }
@@ -465,7 +487,6 @@ img {
 [data-theme="light"] .form-control {
   background: var(--bg);
 }
-/* blue border and glow ring when input is focused */
 .form-control:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
@@ -480,7 +501,6 @@ textarea.form-control {
   resize: vertical;
   min-height: 110px;
 }
-/* error message shown only when input is invalid */
 .form-error {
   font-size: 0.78rem;
   color: var(--error);
@@ -494,6 +514,8 @@ textarea.form-control {
   display: block;
 }
 
+   /* PAGE HEADER (inner pages) */
+   /* ============================================================ */ */
 .page-header {
   background: var(--bg-2);
   padding: 2.25rem 1.5rem;
@@ -510,6 +532,11 @@ textarea.form-control {
   margin-top: 0.25rem;
 }
 
+/* ============================================================
+
+/* ============================================================
+   TABLE
+   ============================================================ */
 .table-wrap {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -553,7 +580,6 @@ tr:hover td {
   background: rgba(0, 180, 216, 0.04);
 }
 
-/* pill shaped status labels */
 .status-badge {
   padding: 0.2rem 0.7rem;
   border-radius: 50px;
@@ -594,6 +620,11 @@ tr:hover td {
   color: #0096b3;
 }
 
+/* ============================================================
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
 .footer {
   background: var(--bg-2);
   border-top: 1px solid var(--border);
@@ -642,6 +673,9 @@ tr:hover td {
   font-size: 0.8rem;
 }
 
+/* ============================================================
+   MISC COMPONENTS
+   ============================================================ */
 .empty-state {
   text-align: center;
   padding: 4rem 1.5rem;
@@ -662,7 +696,6 @@ tr:hover td {
   margin-bottom: 1.5rem;
 }
 
-/* spinning loading indicator */
 .spinner {
   width: 32px;
   height: 32px;
@@ -693,7 +726,9 @@ tr:hover td {
   color: var(--text-light);
 }
 
-/* thin horizontal line with blue glow fade */
+   DIVIDER / GLOW LINE
+   DIVIDER / GLOW LINE
+   /* ============================================================ */ */
 .glow-divider {
   height: 1px;
   background: linear-gradient(
@@ -706,7 +741,9 @@ tr:hover td {
   margin: 0;
 }
 
-/* keyframe animations */
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
 @keyframes slideDown {
   from {
     transform: translateY(-20px);
@@ -763,7 +800,9 @@ tr:hover td {
   animation: fadeIn 0.4s ease forwards;
 }
 
-/* tablet: switch to 2 columns */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 960px) {
   .grid-3,
   .grid-4 {
@@ -784,7 +823,6 @@ tr:hover td {
   }
 }
 
-/* mobile: everything stacks in single column */
 @media (max-width: 640px) {
   .nav-links {
     display: none;
@@ -856,7 +894,9 @@ tr:hover td {
   }
 }
 
-/* helper utility classes */
+/* ============================================================
+   MISC UTILITIES
+   ============================================================ */
 .text-muted {
   color: var(--text-muted);
 }
@@ -914,13 +954,109 @@ tr:hover td {
 .hidden {
   display: none !important;
 }
+/* ============================================================
+   global.css — Thin supplement to style.css (loaded after it)
+   style.css is the primary stylesheet — all base colors, fonts,
+   components, and utilities are defined there.
+   This file adds only things style.css does not cover.
+   ============================================================ */
 
-/* extra variables and utilities not in style.css */
+/* ---- CSS variable additions not in style.css ---- */
 :root {
-  --navbar-height: 64px;
-  --radius-full: 9999px; /* pill shape */
+  --navbar-height: 64px; /* referenced by sticky sidebar calculations */
+  --radius-full: 9999px; /* pill shape helper */
 }
 
+/* ---- .flex-wrap utility (not in style.css) ---- */
 .flex-wrap {
   flex-wrap: wrap;
 }
+
+/* ---- .btn-block for standalone pages where style.css may not load ---- */
+/* Already defined in style.css; keeping here as a safe duplicate */
+
+/* ============================================================
+   admin-pages.css
+   Page uses shared components from base.css:
+   .dashboard-header/.stat-card (job-seeker.css), .page-header,
+   .card, .table-wrap, .form-control, .grid-*, .btn
+   Add admin-pages-specific overrides here if needed.
+   ============================================================ */
+
+/* ---- Delete button: keep white text, add pop animation ---- */
+.btn-danger {
+  background: var(--error) !important;
+  color: #fff !important;
+  border-color: var(--error) !important;
+}
+.btn-danger:hover {
+  background: #c81e1e !important;
+  color: #fff !important;
+  transform: scale(1.06) !important;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4) !important;
+}
+
+/* ---- Delete confirm modal ---- */
+.delete-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.15s ease;
+}
+.delete-modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  animation: modalPop 0.2s ease;
+}
+@keyframes modalPop {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+.delete-modal h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+.delete-modal p {
+  color: #64748b;
+  font-size: 0.88rem;
+  margin-bottom: 1.5rem;
+}
+.delete-modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+.btn-cancel-modal {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1.5px solid #e2e8f0;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-cancel-modal:hover { background: #e2e8f0; }
+.btn-confirm-delete {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-confirm-delete:hover { background: #c81e1e; transform: scale(1.03); }

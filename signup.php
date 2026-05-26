@@ -26,14 +26,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $role = 'seeker';
     }
 
+    // CSRF check
+    if (!verifyCsrfToken()) {
+        $error = 'Invalid form submission. Please try again.';
+    }
+
     // Basic validation
-    if (empty($name) || empty($email) || empty($password)) {
+    if (!$error && (empty($name) || empty($email) || empty($password))) {
         $error = 'Please fill in all required fields.';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    } elseif (!$error && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = 'Please enter a valid email address.';
-    } elseif (strlen($password) < 6) {
-        $error = 'Password must be at least 6 characters.';
-    } elseif ($password !== $confirm) {
+    } elseif (!$error && ($pwErr = validatePassword($password)) !== '') {
+        $error = $pwErr;
+    } elseif (!$error && $password !== $confirm) {
         $error = 'Passwords do not match.';
     } else {
         $pdo = getPDO();
@@ -107,6 +112,7 @@ $preRole = $_POST['role'] ?? $preRole;
 
             <!-- Signup Form -->
             <form method="POST" action="<?= BASE_URL ?>/signup.php" data-validate>
+                <?= csrfField() ?>
 
                 <!-- Role Selector -->
                 <div class="form-group">
@@ -148,19 +154,31 @@ $preRole = $_POST['role'] ?? $preRole;
 
                 <div class="form-group">
                     <label class="form-label" for="password">Password</label>
-                    <input type="password" id="password" name="password"
-                        class="form-control"
-                        placeholder="Min. 6 characters"
-                        required>
-                    <span class="form-error">Password must be at least 6 characters.</span>
+                    <div class="password-wrap">
+                        <input type="password" id="password" name="password"
+                            class="form-control"
+                            placeholder="Min. 8 chars, upper, lower, number, special"
+                            required>
+                        <button type="button" class="pw-toggle" aria-label="Show/hide password" tabindex="-1" onclick="togglePw('password',this)">
+                            <svg class="eye-show" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <svg class="eye-hide" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                        </button>
+                    </div>
+                    <span class="form-error">Min. 8 chars with uppercase, lowercase, number &amp; special character.</span>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="confirm_password">Confirm Password</label>
-                    <input type="password" id="confirm_password" name="confirm_password"
-                        class="form-control"
-                        placeholder="Repeat your password"
-                        required>
+                    <div class="password-wrap">
+                        <input type="password" id="confirm_password" name="confirm_password"
+                            class="form-control"
+                            placeholder="Repeat your password"
+                            required>
+                        <button type="button" class="pw-toggle" aria-label="Show/hide password" tabindex="-1" onclick="togglePw('confirm_password',this)">
+                            <svg class="eye-show" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <svg class="eye-hide" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                        </button>
+                    </div>
                     <span class="form-error">Passwords do not match.</span>
                 </div>
 
@@ -181,6 +199,26 @@ $preRole = $_POST['role'] ?? $preRole;
     <script src="<?= BASE_URL ?>/js/utils.js"></script>
     <script src="<?= BASE_URL ?>/js/flash.js"></script>
     <script src="<?= BASE_URL ?>/js/form-validation.js"></script>
+<style>
+.password-wrap { position:relative; display:flex; align-items:center; }
+.password-wrap .form-control { padding-right:2.8rem; }
+.pw-toggle {
+    position:absolute; right:0.75rem; background:none; border:none;
+    cursor:pointer; color:var(--text-muted); padding:0; display:flex;
+    align-items:center; transition:color 0.2s;
+}
+.pw-toggle:hover { color:var(--primary); }
+</style>
+<script>
+function togglePw(id, btn) {
+    const inp = document.getElementById(id);
+    if (!inp) return;
+    const show = inp.type === 'password';
+    inp.type = show ? 'text' : 'password';
+    btn.querySelector('.eye-show').style.display = show ? 'none' : '';
+    btn.querySelector('.eye-hide').style.display = show ? '' : 'none';
+}
+</script>
 </body>
 
 </html>

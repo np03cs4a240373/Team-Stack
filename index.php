@@ -1,7 +1,4 @@
 <?php
-// ============================================================
-// index.php - Landing Page
-// ============================================================
 require_once 'includes/auth.php';
 
 if (isLoggedIn()) {
@@ -12,15 +9,16 @@ if (isLoggedIn()) {
 require_once 'includes/db.php';
 $pdo = getPDO();
 
-$totalJobs  = $pdo->query("SELECT COUNT(*) FROM jobs WHERE status='active'")->fetchColumn();
+$totalJobs  = $pdo->query("SELECT COUNT(*) FROM jobs WHERE status='active' AND (deadline IS NULL OR deadline >= CURDATE())")->fetchColumn();
 $totalUsers = $pdo->query("SELECT COUNT(*) FROM users WHERE role='seeker'")->fetchColumn();
 $totalEmps  = $pdo->query("SELECT COUNT(*) FROM users WHERE role='employer'")->fetchColumn();
 
+// Get active jobs only (exclude active jobs with expired deadlines)
 $stmt = $pdo->query("
     SELECT jobs.*, users.name AS employer_name
     FROM jobs
     JOIN users ON jobs.employer_id = users.id
-    WHERE jobs.status = 'active'
+    WHERE jobs.status = 'active' AND jobs.is_deleted = 0
     ORDER BY jobs.created_at DESC
     LIMIT 6
 ");
@@ -31,18 +29,8 @@ $pageCss = 'landing';
 require_once 'includes/header.php';
 ?>
 
-<!-- ============================================================
-     HERO
-     ============================================================ -->
 <section class="hero">
     <div class="hero-content">
-
-        <div class="hero-badge">
-            <span class="badge-dots">
-                <span></span><span></span><span></span><span></span>
-            </span>
-            Nepal's #1 Free Job Portal
-        </div>
 
         <h1>
             Find your dream
@@ -58,7 +46,7 @@ require_once 'includes/header.php';
         </form>
 
         <div class="hero-ctas">
-            <a href="<?= BASE_URL ?>/signup.php?role=seeker" class="btn btn-primary btn-lg">Find a Job</a>
+            <a href="<?= BASE_URL ?>/pages/jobs.php" class="btn btn-primary btn-lg">Find a Job</a>
             <a href="<?= BASE_URL ?>/signup.php?role=employer" class="btn btn-outline btn-lg">Post a Job</a>
         </div>
 
@@ -86,9 +74,7 @@ require_once 'includes/header.php';
 
 <hr class="glow-divider">
 
-<!-- ============================================================
-     TESTIMONIALS — "Hear it directly from our users"
-     ============================================================ -->
+     <!-- TESTIMONIALS — "Hear it directly from our users" -->
 <section class="section section-dark">
     <div class="container">
         <p class="section-label">Success Stories</p>
@@ -148,9 +134,7 @@ require_once 'includes/header.php';
 
 <hr class="glow-divider">
 
-<!-- ============================================================
-     HOW IT WORKS
-     ============================================================ -->
+     <!-- HOW IT WORKS -->
 <section class="section section-alt">
     <div class="container">
         <p class="section-label">How It Works</p>
@@ -182,9 +166,7 @@ require_once 'includes/header.php';
 
 <hr class="glow-divider">
 
-<!-- ============================================================
-     LATEST JOBS
-     ============================================================ -->
+     <!-- LATEST JOBS -->
 <?php if (!empty($latestJobs)): ?>
     <section class="section section-dark">
         <div class="container">
@@ -204,24 +186,33 @@ require_once 'includes/header.php';
                 foreach ($latestJobs as $job): ?>
                     <div class="card job-card">
                         <div class="job-card-header">
-                            <div>
+                            <div style="flex:1; min-width:0;">
                                 <a href="<?= BASE_URL ?>/pages/job-detail.php?id=<?= $job['id'] ?>" class="job-title">
                                     <?= htmlspecialchars($job['title']) ?>
                                 </a>
-                                <div class="job-company"><?= htmlspecialchars($job['company']) ?></div>
+                                <div class="job-company" style="display:flex;align-items:center;gap:0.3rem;">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                                    <?= htmlspecialchars($job['company']) ?>
+                                </div>
                             </div>
                             <span class="job-badge badge-<?= $job['type'] ?>">
                                 <?= $typeLabels[$job['type']] ?? $job['type'] ?>
                             </span>
                         </div>
                         <div class="job-meta">
-                            <span>📍 <?= htmlspecialchars($job['location']) ?></span>
+                            <span style="display:inline-flex;align-items:center;gap:0.3rem;">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <?= htmlspecialchars($job['location']) ?>
+                            </span>
                             <?php if ($job['salary']): ?>
-                                <span>💰 <?= htmlspecialchars($job['salary']) ?></span>
+                                <span style="display:inline-flex;align-items:center;gap:0.3rem;">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                    <?= htmlspecialchars($job['salary']) ?>
+                                </span>
                             <?php endif; ?>
                         </div>
                         <div class="job-actions">
-                            <a href="<?= BASE_URL ?>/pages/job-detail.php?id=<?= $job['id'] ?>" class="btn btn-primary btn-sm">View Details</a>
+                            <a href="<?= BASE_URL ?>/pages/job-detail.php?id=<?= $job['id'] ?>" class="btn btn-primary btn-sm">View Details →</a>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -236,9 +227,7 @@ require_once 'includes/header.php';
     <hr class="glow-divider">
 <?php endif; ?>
 
-<!-- ============================================================
-     WHY KAAMKHOJI — COMPARISON
-     ============================================================ -->
+     <!-- WHY KAAMKHOJI — COMPARISON -->
 <section class="section section-dark">
     <div class="container">
         <p class="section-label">Comparison</p>
@@ -312,9 +301,7 @@ require_once 'includes/header.php';
 
 <hr class="glow-divider">
 
-<!-- ============================================================
-     RAVING REVIEWS
-     ============================================================ -->
+     <!-- RAVING REVIEWS -->
 <section class="section section-alt">
     <div class="container">
         <p class="section-label">Testimonials</p>
@@ -372,16 +359,14 @@ require_once 'includes/header.php';
 
 <hr class="glow-divider">
 
-<!-- ============================================================
-     CTA
-     ============================================================ -->
+     <!-- CTA -->
 <section class="cta-section">
     <div class="container">
         <p class="section-label">Get Started</p>
         <h2>Ready to find your next<br><span class="gradient-text">opportunity?</span></h2>
         <p>Join thousands of job seekers and employers building Nepal's future together.</p>
         <div class="cta-btns">
-            <a href="<?= BASE_URL ?>/signup.php?role=seeker" class="btn btn-primary btn-xl">Find a Job</a>
+            <a href="<?= BASE_URL ?>/pages/jobs.php" class="btn btn-primary btn-xl">Find a Job</a>
             <a href="<?= BASE_URL ?>/signup.php?role=employer" class="btn btn-ghost btn-xl">Post a Job</a>
         </div>
     </div>

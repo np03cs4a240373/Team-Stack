@@ -54,7 +54,7 @@ if ($stmt->fetch()) {
     exit;
 }
 
-// Handle PDF/DOCX resume upload (BUG-SUP-017)
+// Handle PDF resume upload (BUG-SUP-017)
 if (!empty($_FILES['resume']['name'])) {
     $file    = $_FILES['resume'];
     $maxSize = 5 * 1024 * 1024;
@@ -70,14 +70,8 @@ if (!empty($_FILES['resume']['name'])) {
     $finfo    = new finfo(FILEINFO_MIME_TYPE);
     $mimeType = $finfo->file($file['tmp_name']);
     $fileExt  = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-    $allowedMimes = [
-        'application/pdf',
-        'application/msword',
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    ];
-    $allowedExts = ['pdf', 'doc', 'docx'];
-    if (!in_array($mimeType, $allowedMimes) && !in_array($fileExt, $allowedExts)) {
-        echo json_encode(['error' => 'Only PDF or DOCX files are accepted for resume upload.']);
+    if ($mimeType !== 'application/pdf' || $fileExt !== 'pdf') {
+        echo json_encode(['error' => 'Only PDF files are accepted for resume upload.']);
         exit;
     }
 

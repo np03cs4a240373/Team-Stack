@@ -1,7 +1,4 @@
 
-
-/* Theme variables for colors, layout and effects */
-
 :root {
   --primary: #00b4d8;
   --primary-dark: #0096b3;
@@ -44,14 +41,16 @@
   --transition: 0.25s ease;
 }
 
-/* light mode tweaks */
+/* ---- Light Mode (now the only mode) ---- */
 [data-theme="light"] {
   --border-glow: rgba(0, 180, 216, 0.4);
   --shadow-cyan: 0 0 30px rgba(0, 180, 216, 0.12);
   --primary-light: rgba(0, 180, 216, 0.1);
 }
 
-/* reset so browsers don't add unnecessary default spacing */
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
 *,
 *::before,
 *::after {
@@ -63,7 +62,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* base body styles - font, background, layout */
 body {
   font-family: "Satoshi", "Poppins", sans-serif;
   background: var(--bg);
@@ -93,7 +91,9 @@ img {
   max-width: 100%;
 }
 
-/* makes text show a blue gradient instead of solid color */
+/* ============================================================
+   UTILITY — GRADIENT TEXT
+   ============================================================ */
 .gradient-text {
   background: var(--gradient-text);
   -webkit-background-clip: text;
@@ -108,7 +108,9 @@ img {
   font-style: italic;
 }
 
-/* sticky navbar that stays at top when scrolling */
+/* ============================================================
+   NAVBAR
+   ============================================================ */
 .navbar {
   position: sticky;
   top: 0;
@@ -180,7 +182,6 @@ img {
   font-weight: 600 !important;
 }
 
-/* hamburger menu icon for mobile */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -199,7 +200,9 @@ img {
   transition: all var(--transition);
 }
 
-/* all button styles - sizes, colors, states */
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -284,7 +287,9 @@ img {
   width: 100%;
 }
 
-/* little round button to switch light/dark theme */
+/* ============================================================
+   THEME TOGGLE
+   ============================================================ */
 .theme-toggle {
   background: var(--primary-light);
   border: 1px solid var(--border);
@@ -305,7 +310,9 @@ img {
   transform: rotate(20deg);
 }
 
-/* colored banner messages shown at top of page */
+/* ============================================================
+   FLASH MESSAGES
+   ============================================================ */
 .flash {
   padding: 0.9rem 1.5rem;
   display: flex;
@@ -347,18 +354,25 @@ img {
   opacity: 1;
 }
 
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
 .main-content {
   flex: 1;
 }
 
-/* centered wrapper that limits width on big screens */
+/* ============================================================
+   CONTAINER
+   ============================================================ */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* section padding and background variations */
+/* ============================================================
+   SECTION STYLES
+   ============================================================ */
 .section {
   padding: 5rem 1.5rem;
 }
@@ -399,7 +413,9 @@ img {
   margin-right: auto;
 }
 
-/* card box with hover effect */
+/* ============================================================
+   CARDS
+   ============================================================ */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -418,7 +434,7 @@ img {
   box-shadow: 0 4px 16px rgba(0, 180, 216, 0.1);
 }
 
-/* responsive grid layouts */
+/* Grid layouts */
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -435,7 +451,11 @@ img {
   gap: 1.5rem;
 }
 
-/* form fields, labels, and validation states */
+/* ============================================================
+
+/* ============================================================
+   FORMS
+   ============================================================ */
 .form-group {
   margin-bottom: 1.25rem;
 }
@@ -490,7 +510,8 @@ textarea.form-control {
   display: block;
 }
 
-/* header shown at top of inner/sub pages */
+   /* PAGE HEADER (inner pages) */
+   /* ============================================================ */ */
 .page-header {
   background: var(--bg-2);
   padding: 2.25rem 1.5rem;
@@ -507,7 +528,11 @@ textarea.form-control {
   margin-top: 0.25rem;
 }
 
-/* scrollable table with rounded corners */
+/* ============================================================
+
+/* ============================================================
+   TABLE
+   ============================================================ */
 .table-wrap {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -551,7 +576,6 @@ tr:hover td {
   background: rgba(0, 180, 216, 0.04);
 }
 
-/* pill-shaped status labels for rows */
 .status-badge {
   padding: 0.2rem 0.7rem;
   border-radius: 50px;
@@ -592,7 +616,11 @@ tr:hover td {
   color: #0096b3;
 }
 
-/* footer with brand info and links */
+/* ============================================================
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
 .footer {
   background: var(--bg-2);
   border-top: 1px solid var(--border);
@@ -641,7 +669,9 @@ tr:hover td {
   font-size: 0.8rem;
 }
 
-/* empty state, spinner, breadcrumb helpers */
+/* ============================================================
+   MISC COMPONENTS
+   ============================================================ */
 .empty-state {
   text-align: center;
   padding: 4rem 1.5rem;
@@ -692,7 +722,9 @@ tr:hover td {
   color: var(--text-light);
 }
 
-/* thin line with a glowing blue fade effect */
+   DIVIDER / GLOW LINE
+   DIVIDER / GLOW LINE
+   /* ============================================================ */ */
 .glow-divider {
   height: 1px;
   background: linear-gradient(
@@ -705,7 +737,9 @@ tr:hover td {
   margin: 0;
 }
 
-/* all keyframe animations used on this site */
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
 @keyframes slideDown {
   from {
     transform: translateY(-20px);
@@ -762,7 +796,9 @@ tr:hover td {
   animation: fadeIn 0.4s ease forwards;
 }
 
-/* responsive breakpoints - tablet then mobile */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 960px) {
   .grid-3,
   .grid-4 {
@@ -854,7 +890,9 @@ tr:hover td {
   }
 }
 
-/* quick utility classes for spacing, text, flex */
+/* ============================================================
+   MISC UTILITIES
+   ============================================================ */
 .text-muted {
   color: var(--text-muted);
 }
@@ -912,15 +950,31 @@ tr:hover td {
 .hidden {
   display: none !important;
 }
+/* ============================================================
+   global.css — Thin supplement to style.css (loaded after it)
+   style.css is the primary stylesheet — all base colors, fonts,
+   components, and utilities are defined there.
+   This file adds only things style.css does not cover.
+   ============================================================ */
 
-/* extra variables and utilities that style.css doesn't have */
+/* ---- CSS variable additions not in style.css ---- */
 :root {
-  --navbar-height: 64px;
-  --radius-full: 9999px;
+  --navbar-height: 64px; /* referenced by sticky sidebar calculations */
+  --radius-full: 9999px; /* pill shape helper */
 }
 
+/* ---- .flex-wrap utility (not in style.css) ---- */
 .flex-wrap {
   flex-wrap: wrap;
 }
 
+/* ---- .btn-block for standalone pages where style.css may not load ---- */
+/* Already defined in style.css; keeping here as a safe duplicate */
 
+/* ============================================================
+   applicants.css
+   Page uses shared components from base.css:
+   .dashboard-header/.stat-card (job-seeker.css), .page-header,
+   .card, .table-wrap, .form-control, .grid-*, .btn
+   Add applicants-specific overrides here if needed.
+   ============================================================ */

@@ -1,8 +1,5 @@
-// ============================================================
 // form-validation.js — Client-side form validation
 // Used by: login.php, signup.php, pages/post-job.php, pages/profile.php
-// Requires: utils.js (showAlert, isValidEmail)
-// ============================================================
 
 document.addEventListener('DOMContentLoaded', function () {
     const forms = document.querySelectorAll('form[data-validate]');

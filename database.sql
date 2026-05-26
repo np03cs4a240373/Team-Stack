@@ -108,6 +108,19 @@ INSERT INTO jobs (employer_id, title, company, location, type, salary, descripti
  'Python or PHP basics. Currently enrolled in CS or IT program.');
 
 -- ============================================================
+-- PASSWORD RESETS TABLE
+-- Stores temporary tokens for forgot-password flow
+-- Token expires after 1 hour
+-- ============================================================
+CREATE TABLE IF NOT EXISTS password_resets (
+    id         INT AUTO_INCREMENT PRIMARY KEY,
+    email      VARCHAR(150) NOT NULL,
+    token      VARCHAR(64)  NOT NULL UNIQUE,
+    expires_at DATETIME     NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ============================================================
 -- DONE! Your database is ready.
 -- Default demo password for all seeded accounts is: 'password'
 -- Change passwords after first login.

@@ -1,24 +1,19 @@
-/*Fonts are loaded from header.php*/
+
 :root {
-  /*main colors*/
   --primary: #00b4d8;
   --primary-dark: #0096b3;
   --primary-light: rgba(0, 180, 216, 0.12);
-
-  /*status colors*/
   --accent: #38c9e8;
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
   --info: #60a5fa;
 
-  /*background colors*/
   --bg: #f8fafc;
   --bg-2: #f1f5f9;
   --bg-card: #ffffff;
   --bg-card-solid: #ffffff;
   --bg-nav: rgba(255, 255, 255, 0.92);
-  /*text colors*/
   --text: #1e293b;
   --text-muted: #64748b;
   --text-light: #94a3b8;
@@ -38,7 +33,7 @@
     #f0fdff 50%,
     #f8fafc 100%
   );
-  /*radius and animation*/
+
   --radius: 14px;
   --radius-sm: 8px;
   --radius-lg: 24px;
@@ -46,14 +41,16 @@
   --transition: 0.25s ease;
 }
 
-/* Light Mode (now the only mode)  */
+/* ---- Light Mode (now the only mode) ---- */
 [data-theme="light"] {
   --border-glow: rgba(0, 180, 216, 0.4);
   --shadow-cyan: 0 0 30px rgba(0, 180, 216, 0.12);
   --primary-light: rgba(0, 180, 216, 0.1);
 }
 
-/* Reset default browser styles*/
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
 *,
 *::before,
 *::after {
@@ -61,12 +58,10 @@
   margin: 0;
   padding: 0;
 }
-
-/*Smooth scrolling*/
 html {
   scroll-behavior: smooth;
 }
-/*Main body styling*/
+
 body {
   font-family: "Satoshi", "Poppins", sans-serif;
   background: var(--bg);
@@ -80,7 +75,7 @@ body {
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
 }
-/* Links */
+
 a {
   color: var(--primary);
   text-decoration: none;
@@ -96,7 +91,9 @@ img {
   max-width: 100%;
 }
 
-/* Utility: gradient text */
+/* ============================================================
+   UTILITY — GRADIENT TEXT
+   ============================================================ */
 .gradient-text {
   background: var(--gradient-text);
   -webkit-background-clip: text;
@@ -111,7 +108,9 @@ img {
   font-style: italic;
 }
 
-/* Navbar styling */
+/* ============================================================
+   NAVBAR
+   ============================================================ */
 .navbar {
   position: sticky;
   top: 0;
@@ -122,7 +121,7 @@ img {
   border-bottom: 1px solid var(--border);
   transition: background var(--transition);
 }
-/* Navigation container */
+
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -201,7 +200,9 @@ img {
   transition: all var(--transition);
 }
 
-/* Buttons */
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -219,7 +220,7 @@ img {
   white-space: nowrap;
   letter-spacing: 0.01em;
 }
-/* Primary button */
+
 .btn-primary {
   background: #00b4d8;
   color: #fff;
@@ -231,7 +232,7 @@ img {
   transform: translateY(-1px);
   box-shadow: 0 6px 24px rgba(0, 180, 216, 0.4);
 }
-/* Outline button */
+
 .btn-outline {
   background: transparent;
   color: var(--primary);
@@ -286,7 +287,9 @@ img {
   width: 100%;
 }
 
-/*Theme toggle*/
+/* ============================================================
+   THEME TOGGLE
+   ============================================================ */
 .theme-toggle {
   background: var(--primary-light);
   border: 1px solid var(--border);
@@ -307,7 +310,9 @@ img {
   transform: rotate(20deg);
 }
 
-/*Flash Messages*/
+/* ============================================================
+   FLASH MESSAGES
+   ============================================================ */
 .flash {
   padding: 0.9rem 1.5rem;
   display: flex;
@@ -349,19 +354,25 @@ img {
   opacity: 1;
 }
 
-/*main content*/
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
 .main-content {
   flex: 1;
 }
 
-/*Container*/
+/* ============================================================
+   CONTAINER
+   ============================================================ */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/*Section styles*/
+/* ============================================================
+   SECTION STYLES
+   ============================================================ */
 .section {
   padding: 5rem 1.5rem;
 }
@@ -402,7 +413,9 @@ img {
   margin-right: auto;
 }
 
-/*Cards*/
+/* ============================================================
+   CARDS
+   ============================================================ */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -438,7 +451,11 @@ img {
   gap: 1.5rem;
 }
 
-/*Forms*/
+/* ============================================================
+
+/* ============================================================
+   FORMS
+   ============================================================ */
 .form-group {
   margin-bottom: 1.25rem;
 }
@@ -493,8 +510,9 @@ textarea.form-control {
   display: block;
 }
 
-/* PAGE HEADER (inner pages) */
-*/ .page-header {
+   /* PAGE HEADER (inner pages) */
+   /* ============================================================ */ */
+.page-header {
   background: var(--bg-2);
   padding: 2.25rem 1.5rem;
   border-bottom: 1px solid var(--border);
@@ -510,7 +528,11 @@ textarea.form-control {
   margin-top: 0.25rem;
 }
 
-/*Footer*/
+/* ============================================================
+
+/* ============================================================
+   TABLE
+   ============================================================ */
 .table-wrap {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -594,7 +616,11 @@ tr:hover td {
   color: #0096b3;
 }
 
-/* Footer*/
+/* ============================================================
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
 .footer {
   background: var(--bg-2);
   border-top: 1px solid var(--border);
@@ -643,7 +669,9 @@ tr:hover td {
   font-size: 0.8rem;
 }
 
-/* Misc Components */
+/* ============================================================
+   MISC COMPONENTS
+   ============================================================ */
 .empty-state {
   text-align: center;
   padding: 4rem 1.5rem;
@@ -694,7 +722,10 @@ tr:hover td {
   color: var(--text-light);
 }
 
-DIVIDER / GLOW LINE DIVIDER / GLOW LINE */ .glow-divider {
+   DIVIDER / GLOW LINE
+   DIVIDER / GLOW LINE
+   /* ============================================================ */ */
+.glow-divider {
   height: 1px;
   background: linear-gradient(
     90deg,
@@ -706,7 +737,9 @@ DIVIDER / GLOW LINE DIVIDER / GLOW LINE */ .glow-divider {
   margin: 0;
 }
 
-/* Animations */
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
 @keyframes slideDown {
   from {
     transform: translateY(-20px);
@@ -763,8 +796,9 @@ DIVIDER / GLOW LINE DIVIDER / GLOW LINE */ .glow-divider {
   animation: fadeIn 0.4s ease forwards;
 }
 
-/* Responsive */
-
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 960px) {
   .grid-3,
   .grid-4 {
@@ -856,7 +890,9 @@ DIVIDER / GLOW LINE DIVIDER / GLOW LINE */ .glow-divider {
   }
 }
 
-/* misc utilities*/
+/* ============================================================
+   MISC UTILITIES
+   ============================================================ */
 .text-muted {
   color: var(--text-muted);
 }
@@ -914,27 +950,32 @@ DIVIDER / GLOW LINE DIVIDER / GLOW LINE */ .glow-divider {
 .hidden {
   display: none !important;
 }
-/* 
-   global.css is extra styles added after style.css
-   style.css has the main design (colors, fonts, components)
-   this file only adds what is missing
-*/
+/* ============================================================
+   global.css — Thin supplement to style.css (loaded after it)
+   style.css is the primary stylesheet — all base colors, fonts,
+   components, and utilities are defined there.
+   This file adds only things style.css does not cover.
+   ============================================================ */
 
-/*CSS variable additions not in style.css*/
+/* ---- CSS variable additions not in style.css ---- */
 :root {
   --navbar-height: 64px; /* referenced by sticky sidebar calculations */
   --radius-full: 9999px; /* pill shape helper */
 }
 
-/* .flex-wrap utility (not in style.css) */
+/* ---- .flex-wrap utility (not in style.css) ---- */
 .flex-wrap {
   flex-wrap: wrap;
 }
 
-/* button full width if style.css is not loaded */
+/* ---- .btn-block for standalone pages where style.css may not load ---- */
 /* Already defined in style.css; keeping here as a safe duplicate */
 
-/*Dashboard*/
+/* ============================================================
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
 .dashboard-header {
   position: relative;
   overflow: hidden;
@@ -1027,3 +1068,7 @@ DIVIDER / GLOW LINE DIVIDER / GLOW LINE */ .glow-divider {
   color: var(--text-muted);
   margin-top: 0.2rem;
 }
+
+/* ============================================================
+
+/* ============================================================

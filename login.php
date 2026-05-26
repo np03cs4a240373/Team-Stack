@@ -17,7 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email    = trim($_POST['email']    ?? '');
     $password = trim($_POST['password'] ?? '');
 
-    if (empty($email) || empty($password)) {
+    if (!verifyCsrfToken()) {
+        $error = 'Invalid form submission. Please try again.';
+    } elseif (empty($email) || empty($password)) {
         $error = 'Please fill in all fields.';
     } else {
         $pdo = getPDO();
@@ -29,11 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Verify password against hashed password in DB
         if ($user && password_verify($password, $user['password'])) {
-            loginUser($user); // Sets session variables
-
-            // Redirect to appropriate dashboard
-            header('Location: ' . getDashboardUrl());
-            exit;
+            if (isset($user['is_active']) && (int)$user['is_active'] === 0) {
+                $error = 'Your account has been suspended. Please contact support.';
+            } else {
+                loginUser($user);
+                header('Location: ' . getDashboardUrl());
+                exit;
+            }
         } else {
             $error = 'Invalid email or password.';
         }
@@ -79,6 +83,7 @@ $pageTitle = 'Login';
 
         <!-- Login Form -->
         <form method="POST" action="<?= BASE_URL ?>/login.php" data-validate>
+            <?= csrfField() ?>
             <div class="form-group">
                 <label class="form-label" for="email">Email Address</label>
                 <input type="email" id="email" name="email"
